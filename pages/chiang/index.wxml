@@ -1,7 +1,11 @@
 <view class="wrap">
     <view class="top">
         <header text="我的"/>
-        <view>3242</view>
+        <scroll-view scroll-x class="tab" enhanced="{{true}}" enable-flex="true">
+            <block wx:for="{{tab}}" wx:key="id">
+                <view bind:tap="onTapTab" data-idx="{{index}}" class="tab_item {{activeTabIdx === index ? 'tab_item_active' : ''}}">{{item.name}}</view>
+            </block>
+        </scroll-view>
     </view>
      <scroll-view 
         lower-threshold="{{lowerThreshold}}"
@@ -11,5 +15,6 @@
         class="content" 
         enhanced="{{true}}" 
         show-scrollbar="{{false}}">
+        
     </scroll-view>
 </view>

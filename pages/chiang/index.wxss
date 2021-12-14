@@ -8,7 +8,29 @@
 }
 
 .top {
-    background: linear-gradient(to bottom , #fef1e8, #f7f6fb); 
+    background: linear-gradient(to bottom , #ffeadb, #f7f6fb); 
+}
+
+.tab {
+    margin-top: 20rpx;
+    width: calc(100vw - 40rpx);
+    overflow: hidden;
+    padding: 20rpx;
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+}
+
+.tab_item {
+    height: 40rpx;
+    margin-right: 40rpx;
+    display: flex;
+    align-items: center;
+}
+
+.tab_item_active {
+    font-size: 34rpx;
+    font-weight: 900;
 }
 
 .content {
