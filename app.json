@@ -1,53 +1,38 @@
 {
-	"pages": [
-		"pages/index/index",
-		"pages/logs/logs",
-		"pages/chiang/index",
-		"pages/my/index",
-		"pages/order/index"
-	],
+	"pages": ["pages/chiang/index", "pages/my/index", "pages/order/index"],
 	"window": {
 		"backgroundTextStyle": "light",
 		"navigationBarBackgroundColor": "#fff",
 		"navigationBarTitleText": "Weixin",
 		"navigationBarTextStyle": "black"
 	},
-	"style": "v2",
 	"sitemapLocation": "sitemap.json",
+	"usingComponents": {
+		"van-field": "@vant/weapp/field/index",
+        "van-icon": "@vant/weapp/icon/index"
+	},
 	"tabBar": {
 		"color": "#d8d8d8",
 		"selectedColor": "#313131",
 		"position": "bottom",
 		"list": [
 			{
-				"pagePath": "pages/home/index/index",
-				"text": "首页",
+				"pagePath": "pages/chiang/index",
+				"text": "驰昂",
 				"iconPath": "asserts/tabBar/home.png",
 				"selectedIconPath": "asserts/tabBar/home_select.png"
 			},
 			{
-				"pagePath": "pages/square/index/index",
-				"text": "广场",
+				"pagePath": "pages/order/index",
+				"text": "课程",
 				"iconPath": "asserts/tabBar/square.png",
 				"selectedIconPath": "asserts/tabBar/square_select.png"
 			},
 			{
-				"pagePath": "pages/rest/index/index",
+				"pagePath": "pages/my/index",
 				"text": "其他",
 				"iconPath": "asserts/tabBar/rest.png",
 				"selectedIconPath": "asserts/tabBar/rest_select.png"
-			},
-			{
-				"pagePath": "pages/calendar/index/index",
-				"text": "档期",
-				"iconPath": "asserts/tabBar/calendar.png",
-				"selectedIconPath": "asserts/tabBar/calendar_select.png"
-			},
-			{
-				"pagePath": "pages/my/index/index",
-				"text": "我的",
-				"iconPath": "asserts/tabBar/my.png",
-				"selectedIconPath": "asserts/tabBar/my_select.png"
 			}
 		]
 	}

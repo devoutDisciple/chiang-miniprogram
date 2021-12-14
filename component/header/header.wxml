@@ -1,0 +1,26 @@
+<view class='header' style="height: {{headerHight}}px">
+    <view class='status' style="height:{{statusHeight}}px"></view>
+    <view class='nav' style="height:{{navHeight}}px">
+        <view class="nav_con" style="padding: {{paddingTop}}px 0px;">
+            <view wx:if="{{showBack}}" class="nav_icon" style="width: {{conHegiht + paddingLeft}}px">
+                <image 
+                    class="nav_img"
+                    bindtap="onGoback"
+                    style="width: {{conHegiht * 2 / 3}}px; height: {{conHegiht * 2 / 3}}px" 
+                    src="/asserts/public/back.png" />
+            </view>
+            <view class="nav_ipt" bindtap="onTapIpt">
+                <image class="nav_ipt_search" src="/asserts/public/search.png" style="height: {{conHegiht / 2 - 2}}px; width: {{conHegiht / 2 - 2}}px"/>
+                <input 
+                    value="{{ value }}"
+                    placeholder-style="font-size: 24rpx;" 
+                    bindconfirm="onConfirm" 
+                    class="nav_ipt_container" 
+                    placeholder="搜索课程" 
+                    bindinput="onChange"
+                    style="height: {{conHegiht - 2}}px"/>
+            </view> 
+        </view>
+        <view class="nav_empty" style="width:{{disWidth}}px"></view>     
+    </view>
+</view>

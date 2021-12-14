@@ -1,2 +1,15 @@
-<!--pages/chiang/index.wxml-->
-<text>pages/chiang/index.wxml</text>
+<view class="wrap">
+    <view class="top">
+        <header text="我的"/>
+        <view>3242</view>
+    </view>
+     <scroll-view 
+        lower-threshold="{{lowerThreshold}}"
+        bindscrolltolower="onScrollBtm"
+        scroll-y="{{true}}" 
+        bindscroll="onPageScroll"
+        class="content" 
+        enhanced="{{true}}" 
+        show-scrollbar="{{false}}">
+    </scroll-view>
+</view>
