@@ -23,6 +23,34 @@ Page({
 			},
 		],
 		activeTabIdx: 1,
+		swiperList: [
+			{
+				id: 1,
+				text: 1,
+				url: '/asserts/temp/1.png',
+			},
+			{
+				id: 2,
+				text: 2,
+				url: '/asserts/temp/2.png',
+			},
+			{
+				id: 3,
+				text: 3,
+				url: '/asserts/temp/3.png',
+			},
+			{
+				id: 4,
+				text: 4,
+				url: '/asserts/temp/4.png',
+			},
+		],
+		classList: [
+			{
+				id: 1,
+				name: '热门课程',
+			},
+		],
 	},
 
 	/**
@@ -42,9 +70,12 @@ Page({
 
 	// 选择tab
 	onTapTab: function (e) {
-		const { idx } = e.currentTarget.dataset;
+		const { idx } = e.detail;
 		this.setData({ activeTabIdx: idx });
 	},
+
+	// 选择课程
+	onTapClassTab: function () {},
 
 	/**
 	 * 生命周期函数--监听页面隐藏

@@ -12,10 +12,11 @@
 }
 
 .tab {
-    margin-top: 20rpx;
+    height: 60rpx;
     width: calc(100vw - 40rpx);
     overflow: hidden;
     padding: 20rpx;
+    padding-top: 30rpx;
     display: flex;
     flex-direction: row;
     white-space: nowrap;
@@ -26,12 +27,45 @@
     margin-right: 40rpx;
     display: flex;
     align-items: center;
+    padding-bottom: 10rpx;
 }
 
 .tab_item_active {
     font-size: 34rpx;
     font-weight: 900;
+    position: relative;
 }
+
+.tab_item_border {
+    width: 50rpx;
+    height: 6rpx;
+    background: #f47a12;
+    position: absolute;
+    left: calc(50% - 25rpx);
+    bottom: -5rpx;
+}
+
+/* .tab {
+    padding: 20rpx;
+    padding-top: 0;
+}
+
+.tab .van-tabs .van-tabs__scroll {
+    background: none;
+}
+
+.tab .van-tabs .van-tabs__scroll .van-tabs__nav {
+    display: block;
+}
+
+.tab .van-tabs .van-tabs__scroll .van-tabs__nav .van-tabs__line {
+    background: #fa6e01;
+}
+
+.tab .van-tabs .van-tabs__scroll .van-tabs__nav .van-tab {
+    display: inline-block;
+    padding: 0 20rpx;
+} */
 
 .content {
     flex: 1;
@@ -43,4 +77,29 @@
     width: 0;
     height: 0;
     color: transparent;
+}
+
+.swiper {
+    width: calc(100vw - 40rpx);
+    padding-left: 20rpx;
+    height: calc((100vw - 40rpx) / 3);
+    border-radius: 20rpx;
+}
+
+.swiper_item {
+    height: 100%;
+    width: 100%;
+}
+
+.swiper_img {
+    height: 100%;
+    width: 100%;
+}
+
+.class {
+    padding-top: 20rpx;
+}
+
+.chunk {
+    margin-bottom: 20rpx;
 }

@@ -9,7 +9,9 @@
 	"sitemapLocation": "sitemap.json",
 	"usingComponents": {
 		"van-field": "@vant/weapp/field/index",
-        "van-icon": "@vant/weapp/icon/index"
+        "van-icon": "@vant/weapp/icon/index",
+        "van-tab": "@vant/weapp/tab/index",
+        "van-tabs": "@vant/weapp/tabs/index"
 	},
 	"tabBar": {
 		"color": "#d8d8d8",

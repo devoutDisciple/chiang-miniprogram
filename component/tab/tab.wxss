@@ -1,0 +1,33 @@
+.tab {
+    height: 60rpx;
+    width: calc(100vw - 40rpx);
+    overflow: hidden;
+    padding: 20rpx;
+    padding-top: 30rpx;
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+}
+
+.tab_item {
+    height: 40rpx;
+    margin-right: 40rpx;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10rpx;
+}
+
+.tab_item_active {
+    font-size: 34rpx;
+    font-weight: 900;
+    position: relative;
+}
+
+.tab_item_border {
+    width: 50rpx;
+    height: 6rpx;
+    background: #f47a12;
+    position: absolute;
+    left: calc(50% - 25rpx);
+    bottom: -5rpx;
+}

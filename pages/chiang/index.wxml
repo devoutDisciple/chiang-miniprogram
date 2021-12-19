@@ -1,11 +1,24 @@
 <view class="wrap">
     <view class="top">
         <header text="我的"/>
-        <scroll-view scroll-x class="tab" enhanced="{{true}}" enable-flex="true">
+        <!-- <scroll-view scroll-x class="tab" enhanced="{{true}}" enable-flex="true">
             <block wx:for="{{tab}}" wx:key="id">
-                <view bind:tap="onTapTab" data-idx="{{index}}" class="tab_item {{activeTabIdx === index ? 'tab_item_active' : ''}}">{{item.name}}</view>
+                <view bind:tap="onTapTab" data-idx="{{index}}" class="tab_item {{activeTabIdx === index ? 'tab_item_active' : ''}}">
+                    {{item.name}}
+                    <block wx:if="{{ activeTabIdx === index }}">
+                        <view class="tab_item_border"></view>
+                    </block>
+                </view>
             </block>
-        </scroll-view>
+        </scroll-view> -->
+        <tab list="{{tab}}" activeIdx="{{activeTabIdx}}" bindOnTapTab="onTapTab"/>
+        <!-- <view class="tab">
+            <van-tabs line-width="{{25}}" ellipsis="{{false}}" active="{{ active }}" sticky="{{ true }}" bind:change="onChange">
+                <block wx:for="{{tab}}" wx:key="id">
+                    <van-tab title="{{item.name}}" />
+                </block>
+            </van-tabs>
+        </view> -->
     </view>
      <scroll-view 
         lower-threshold="{{lowerThreshold}}"
@@ -15,6 +28,28 @@
         class="content" 
         enhanced="{{true}}" 
         show-scrollbar="{{false}}">
-        
+        <swiper class="swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" duration="{{300}}" circular="{{true}}">
+            <block wx:for="{{swiperList}}" wx:key="id">
+                <swiper-item class="swiper_item">
+                    <image class="swiper_img" src="{{item.url}}"/>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="class">
+            <tab list="{{classList}}" bindOnTapTab="onTapClassTab"/>
+        </view>
+        <view class="chunk">
+            <class-item />
+        </view>
+        <view class="chunk">
+            <class-item />
+        </view>
+        <view class="chunk">
+            <class-item />
+        </view>
+        <view class="chunk">
+            <class-item />
+        </view>
+        <btm-tip />
     </scroll-view>
 </view>

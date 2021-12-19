@@ -1,0 +1,16 @@
+<view class="data">
+    <view class="data_title">微积分中值定理及导数应用-大学同步</view>
+    <view class="data_time">课程周期：2021.12.14-2021.12.24</view>
+    <view class="data_tag">
+        <view class="class_tag tag">22考研</view>
+        <view class="desc_tag tag">直播</view>
+        <view class="desc_tag tag">10小时</view>
+        <view class="desc_tag tag">备考秘诀</view>
+        <view class="desc_tag tag">阅卷人亲授</view>
+    </view>
+    <view class="data_person">
+        <image class="data_person_img" src="/asserts/temp/photo.png" />
+        <view class="data_person_name">罗老师</view>
+        <view class="data_person_desc">限时优惠3000元</view>
+    </view>
+</view>

@@ -1,0 +1,10 @@
+<scroll-view scroll-x class="tab" enhanced="{{true}}" enable-flex="true">
+    <block wx:for="{{list}}" wx:key="id">
+        <view bind:tap="onTapTab" data-idx="{{index}}" class="tab_item {{activeIdx === index ? 'tab_item_active' : ''}}">
+            {{item.name}}
+            <block wx:if="{{ activeIdx === index }}">
+                <view class="tab_item_border"></view>
+            </block>
+        </view>
+    </block>
+</scroll-view>

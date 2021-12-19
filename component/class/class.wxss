@@ -1,0 +1,69 @@
+.data {
+    background: #fff;
+    padding: 40rpx 20rpx;
+    margin-left: 20rpx;
+    width: calc(100vw - 80rpx);
+    border-radius: 20rpx;
+}
+
+.data_title {
+    font-size: 34rpx;
+    color: #333;
+    font-weight: 700;
+
+}
+
+.data_time {
+    margin: 20rpx 0;
+    color: #2e2e2e;
+    font-size: 26rpx;
+}
+
+.data_tag {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 22rpx;
+    padding: 10rpx;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.class_tag {
+    background: #f4fcf7;
+    color: #3f7735;
+}
+
+.desc_tag {
+    background: #fefaf7;
+    color: #d08152;
+}
+
+.data_person {
+    display: flex;
+    height: 100rpx;
+    font-size: 28rpx;
+}
+
+.data_person_img {
+    height: 100rpx;
+    width: 100rpx;
+}
+
+.data_person_name {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    color: #8a8a8a;
+    margin-left: 10rpx;
+}
+
+.data_person_desc {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    color: #f36f1f;
+}
