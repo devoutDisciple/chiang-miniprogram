@@ -1,3 +1,4 @@
+import login from '../../utils/login';
 // pages/chiang/index.js
 Page({
 	/**
@@ -56,7 +57,11 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function (options) {},
+	onLoad: function (options) {
+		login.getLogin().then((res) => {
+			console.log(res, 1111);
+		});
+	},
 
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
