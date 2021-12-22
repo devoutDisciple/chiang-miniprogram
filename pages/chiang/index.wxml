@@ -51,5 +51,6 @@
             <class-item />
         </view>
         <btm-tip />
+        <phone-component visible="{{phoneDialogVisible}}" bindOnClose="onClosePhoneDialog"/>
     </scroll-view>
 </view>

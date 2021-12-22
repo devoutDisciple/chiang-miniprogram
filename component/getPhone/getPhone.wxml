@@ -1,0 +1,15 @@
+<van-popup
+    show="{{ visible }}"
+    round
+    closeable
+    position="bottom"
+    custom-style="height: 20%"
+    bind:close="onClose"
+    >
+    <view class="con">
+        <view class="titile">驰昂教育想要获取您的手机号</view>
+        <view class="btn">
+            <button type="primary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">点击获取手机号</button>
+        </view>
+    </view>
+    </van-popup>

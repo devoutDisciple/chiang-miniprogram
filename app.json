@@ -11,7 +11,8 @@
 		"van-field": "@vant/weapp/field/index",
         "van-icon": "@vant/weapp/icon/index",
         "van-tab": "@vant/weapp/tab/index",
-        "van-tabs": "@vant/weapp/tabs/index"
+        "van-tabs": "@vant/weapp/tabs/index",
+        "van-popup": "@vant/weapp/popup/index"
 	},
 	"tabBar": {
 		"color": "#d8d8d8",

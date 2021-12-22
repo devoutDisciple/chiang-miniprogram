@@ -1,0 +1,10 @@
+.con {
+    padding: 30rpx;
+    font-size: 24rpx;
+    color: #8a8a8a;
+}
+
+.btn {
+    margin-top: 60rpx;
+    padding: 0 40rpx;
+}

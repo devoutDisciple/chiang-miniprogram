@@ -52,15 +52,29 @@ Page({
 				name: '热门课程',
 			},
 		],
+		phoneDialogVisible: true,
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function (options) {
-		login.getLogin().then((res) => {
-			console.log(res, 1111);
-		});
+	onLoad: function () {
+		// 判断用户是否登录
+		if (!login.isLogin()) {
+			login.getLogin();
+		}
+		// 判断是否已经获取用户手机号
+		const phone = wx.getStorageSync('phone');
+		if (phone) {
+			console.log('已经获取手机号');
+		} else {
+			this.setData({ phoneDialogVisible: true });
+		}
+	},
+
+	// 关闭获取手机号弹框
+	onClosePhoneDialog: function () {
+		this.setData({ phoneDialogVisible: false });
 	},
 
 	/**

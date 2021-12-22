@@ -5,7 +5,8 @@
         "listItem": "/component/listItem/listItem",
         "tab": "/component/tab/tab",
         "class-item": "/component/class/class",
-        "btm-tip": "/component/btmTip/btmTip"
+        "btm-tip": "/component/btmTip/btmTip",
+        "phone-component": "/component/getPhone/getPhone"
 	},
 	"enablePullDownRefresh": true
 }
