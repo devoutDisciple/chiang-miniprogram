@@ -14,17 +14,17 @@ const getDeviceInfo = () => {
 				const paddingTop = btnTop - statusBarHeight;
 				const conHegiht = navHeight - paddingTop * 2;
 				resolve({
-                    // 屏幕高度，单位px
-					screenHeight, 
-                    // 屏幕宽度，单位px
+					// 屏幕高度，单位px
+					screenHeight,
+					// 屏幕宽度，单位px
 					screenWidth,
-                    // 操作系统及版本
+					// 操作系统及版本
 					system,
-                    // 设备像素比
+					// 设备像素比
 					pixelRatio,
-                    // 设备型号。新机型刚推出一段时间会显示unknown，微信会尽快进行适配。
+					// 设备型号。新机型刚推出一段时间会显示unknown，微信会尽快进行适配。
 					model,
-                    // 状态栏的高度，单位px
+					// 状态栏的高度，单位px
 					statusBarHeight,
 					headerHight,
 					navHeight,

@@ -1,5 +1,5 @@
 import login from '../../utils/login';
-// pages/chiang/index.js
+
 Page({
 	/**
 	 * 页面的初始数据
@@ -52,7 +52,7 @@ Page({
 				name: '热门课程',
 			},
 		],
-		phoneDialogVisible: true,
+		phoneDialogVisible: false,
 	},
 
 	/**
@@ -68,7 +68,7 @@ Page({
 		if (phone) {
 			console.log('已经获取手机号');
 		} else {
-			this.setData({ phoneDialogVisible: true });
+			this.setData({ phoneDialogVisible: false });
 		}
 	},
 

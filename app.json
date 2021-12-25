@@ -33,7 +33,7 @@
 			},
 			{
 				"pagePath": "pages/my/index",
-				"text": "其他",
+				"text": "我的",
 				"iconPath": "asserts/tabBar/rest.png",
 				"selectedIconPath": "asserts/tabBar/rest_select.png"
 			}

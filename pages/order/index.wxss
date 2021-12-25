@@ -1,1 +1,9 @@
-/* pages/order/index.wxss */
+.class {
+    height: 100vh;
+    width: 100vw;
+    background: #f7f6fb;
+}
+
+.chunk {
+    margin: 20rpx 0;
+}

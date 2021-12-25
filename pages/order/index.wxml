@@ -1,2 +1,27 @@
-<!--pages/order/index.wxml-->
-<text>pages/order/index.wxml</text>
+<scroll-view
+    class="class"
+    scroll-y="{{true}}"
+    enhanced="{{true}}"
+    enable-flex="{{true}}"
+    refresher-background="red"
+    refresher-triggered="{{false}}"
+    refresher-enabled="{{true}}"
+    bindrefresherrefresh="onRefresh"
+    show-scrollbar="{{false}}">
+        <view class="chunk">
+            <class-item />
+        </view>
+        <view class="chunk">
+            <class-item />
+        </view>
+        <view class="chunk">
+            <class-item />
+        </view>
+        <view class="chunk">
+            <class-item />
+        </view>
+        <view class="chunk">
+            <class-item />
+        </view>
+        <btm-tip />
+</scroll-view>

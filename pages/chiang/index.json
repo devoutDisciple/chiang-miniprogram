@@ -2,7 +2,6 @@
 	"navigationStyle": "custom",
 	"usingComponents": {
         "header": "/component/header/header",
-        "listItem": "/component/listItem/listItem",
         "tab": "/component/tab/tab",
         "class-item": "/component/class/class",
         "btm-tip": "/component/btmTip/btmTip",

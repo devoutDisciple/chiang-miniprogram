@@ -1,2 +1,27 @@
-<!--pages/my/index.wxml-->
-<text>pages/my/index.wxml</text>
+<scroll-view
+    class="my"
+    scroll-y="{{true}}"
+    enhanced="{{true}}"
+    enable-flex="{{true}}"
+    refresher-background="red"
+    refresher-triggered="{{false}}"
+    refresher-enabled="{{true}}"
+    bindrefresherrefresh="onRefresh"
+    show-scrollbar="{{false}}">
+        <view class="detail" style="padding-top: {{headerHight}}px">
+            <view class="person">
+                <image src="/asserts/temp/photo.png" class="person_img"/>
+                <view class="person_name">张振</view>
+                <view class="person_detail"></view>
+            </view>
+        </view>
+        <view class="setting">
+            <listItem iconName="order" text="账单明细" isFirst />
+            <listItem iconName="team" text="组团记录" />
+            <listItem iconName="class" text="报名课程" isLast />
+        </view>
+        <view class="setting">
+            <listItem iconName="service" text="联系客服" isFirst />
+            <listItem iconName="our" text="关于我们" isLast />
+        </view>
+</scroll-view>

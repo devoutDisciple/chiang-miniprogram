@@ -1,9 +1,49 @@
-.wrap {
+.my {
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    background: #f7f6fb;
+}
+
+.test {
+    height: 200rpx;
+    border: 1rpx solid red;
+}
+
+.detail {
+    padding-top: 100rpx;
+    background: linear-gradient(to bottom, #ffeadb, #f7f6fb);
+    padding-bottom: 40rpx;
+}
+
+.person {
     display: flex;
-    flex-direction: column;
-    position: relative;
-    background: #000;
+    margin-top: 50rpx;
+    padding: 20rpx;
+}
+
+.person_img {
+    height: 150rpx;
+    width: 150rpx;
+}
+
+.person_name {
+    width: 200rpx;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-left: 20rpx;
+    color: #8a8a8a;
+}
+
+.person_detail {
+    flex: 1;
+}
+
+.setting {
+    background: #fff;
+    padding: 20rpx;
+    width: calc(100vw - 80rpx);
+    margin-left: 20rpx;
+    margin-top: 50rpx;
+    border-radius: 20rpx;
 }
