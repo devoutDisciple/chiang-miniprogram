@@ -42,5 +42,18 @@
         </view>
         <view class="ellipse"></view>
     </scroll-view>
-    <view class="btm">2131</view>
+    <view class="btm">
+        <view class="service">
+            <view>
+                <image class="service_icon" src="/asserts/public/zixun.png" />
+                <view class="service_txt">咨询</view>
+            </view>
+        </view>
+        <view class="apply">
+            <view class="apply_btn">立即报名</view>
+        </view>
+        <view class="cluster">
+            <view class="cluster_btn">组团报名</view>
+        </view>
+    </view>
 </view>

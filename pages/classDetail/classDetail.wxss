@@ -11,10 +11,6 @@
     overflow: hidden;
 }
 
-.btm {
-    height: 180rpx;
-}
-
 .intro {
     width: calc(100vw - 40rpx);
     margin-left: 20rpx;
@@ -101,4 +97,64 @@
 
 .ellipse {
     height: 100rpx;
+}
+
+.btm {
+    height: 160rpx;
+    display: flex;
+}
+
+.service {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120rpx;
+}
+
+.service_icon {
+    height: 40rpx;
+    width: 40rpx;
+}
+
+.service_txt {
+    font-size: 22rpx;
+    color: #8a8a8a;
+}
+
+.apply {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.apply_btn {
+    height: 80rpx;
+    width: 90%;
+    background: #f99a2e;
+    color: #fff;
+    border-top-left-radius: 50rpx;
+    border-bottom-left-radius: 50rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cluster {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.cluster_btn {
+    height: 80rpx;
+    width: 90%;
+    background: #f97427;
+    color: #fff;
+    border-top-right-radius: 50rpx;
+    border-bottom-right-radius: 50rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
