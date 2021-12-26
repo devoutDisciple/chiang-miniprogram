@@ -4,11 +4,6 @@
     background: #f7f6fb;
 }
 
-.test {
-    height: 200rpx;
-    border: 1rpx solid red;
-}
-
 .detail {
     padding-top: 100rpx;
     background: linear-gradient(to bottom, #ffeadb, #f7f6fb);

@@ -23,6 +23,12 @@
           "pathName": "pages/order/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "课程详情",
+          "pathName": "pages/classDetail/classDetail",
+          "query": "",
+          "scene": null
         }
       ]
     }

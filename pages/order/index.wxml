@@ -3,7 +3,7 @@
     scroll-y="{{true}}"
     enhanced="{{true}}"
     enable-flex="{{true}}"
-    refresher-background="red"
+    refresher-background="#ffeadb"
     refresher-triggered="{{false}}"
     refresher-enabled="{{true}}"
     bindrefresherrefresh="onRefresh"

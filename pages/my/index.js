@@ -6,6 +6,7 @@ Page({
 	 */
 	data: {
 		headerHight: 60,
+		refresherTriggered: false,
 	},
 
 	/**
@@ -28,6 +29,10 @@ Page({
 	// 刷新
 	onRefresh: function () {
 		console.log(123);
+		this.setData({ refresherTriggered: true });
+		setTimeout(() => {
+			this.setData({ refresherTriggered: false });
+		}, 3000);
 	},
 
 	getDeviceInfo: function () {

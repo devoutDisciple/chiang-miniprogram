@@ -77,6 +77,11 @@ Page({
 		this.setData({ phoneDialogVisible: false });
 	},
 
+	// 点击item
+	onTapClassItem: function () {
+		wx.navigateTo({ url: '/pages/classDetail/classDetail' });
+	},
+
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */

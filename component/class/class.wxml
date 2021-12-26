@@ -1,4 +1,4 @@
-<view class="data">
+<view class="data" bindtap = "onClick">
     <view class="data_title">微积分中值定理及导数应用-大学同步</view>
     <view class="data_time">课程周期：2021.12.14-2021.12.24</view>
     <view class="data_tag">

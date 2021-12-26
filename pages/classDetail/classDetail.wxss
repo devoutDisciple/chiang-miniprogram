@@ -1,0 +1,104 @@
+.wrap {
+    height: 100vh;
+    width: 100vw;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.con {
+    flex: 1;
+    overflow: hidden;
+}
+
+.btm {
+    height: 180rpx;
+}
+
+.intro {
+    width: calc(100vw - 40rpx);
+    margin-left: 20rpx;
+    border-bottom: 1rpx solid #f7f6fb;
+    padding-bottom: 20rpx;
+}
+
+.intro_img {
+    border-radius: 20rpx;
+    width: calc(100vw - 40rpx);
+    height: calc((100vw - 40rpx) / 3);
+}
+
+.intro_title {
+    margin-top: 20rpx;
+    font-size: 34rpx;
+    font-weight: 900;
+}
+
+.intro_time {
+    margin: 20rpx 0;
+    font-size: 26rpx;
+    color: #8a8a8a;
+}
+
+.intro_person {
+    font-size: 26rpx;
+    color: #8a8a8a;
+}
+
+.intro_price {
+    margin-top: 20rpx;
+    font-size: 34rpx;
+    font-weight: 900;
+    color: #ef6f28;
+}
+
+.intro_price_sign {
+    font-size: 26rpx;
+}
+
+.teacher {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 20rpx;
+    padding-bottom: 20rpx;
+}
+
+.teacher_chunk {
+    display: flex;
+    align-items: center;
+    margin-top: 20rpx;
+    margin-right: 40rpx;
+}
+
+.teacher_photo {
+    height: 80rpx;
+    width: 80rpx;
+}
+
+.teach_name {
+    color: #bfbfbf;
+    font-size: 28rpx;
+    margin-left: 10rpx;
+}
+
+.split {
+    height: 20rpx;
+    background: #f7f6fb;
+}
+
+.tab {
+}
+
+.detail {
+    padding: 0 20rpx;
+}
+
+.detail_img {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+.ellipse {
+    height: 100rpx;
+}

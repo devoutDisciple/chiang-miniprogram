@@ -21,10 +21,7 @@
         </view> -->
     </view>
      <scroll-view 
-        lower-threshold="{{lowerThreshold}}"
-        bindscrolltolower="onScrollBtm"
         scroll-y="{{true}}" 
-        bindscroll="onPageScroll"
         class="content" 
         enhanced="{{true}}" 
         show-scrollbar="{{false}}">
@@ -39,7 +36,7 @@
             <tab list="{{classList}}" bindOnTapTab="onTapClassTab"/>
         </view>
         <view class="chunk">
-            <class-item />
+            <class-item bindOnTap="onTapClassItem"/>
         </view>
         <view class="chunk">
             <class-item />
