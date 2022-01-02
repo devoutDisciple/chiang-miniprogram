@@ -1,4 +1,5 @@
-// pages/classDetail/classDetail.js
+import reqrest from '../../utils/request';
+
 Page({
 	/**
 	 * 页面的初始数据
@@ -37,11 +38,40 @@ Page({
 	 */
 	onShow: function () {},
 
+	// 刷新
 	onRefresh: function () {
 		this.setData({ refresherTriggered: true });
 		setTimeout(() => {
 			this.setData({ refresherTriggered: false });
 		}, 1000);
+	},
+
+	// 点击立即报名
+	onClickApply: async function () {
+		const openId = wx.getStorageSync('openId');
+		const result = await reqrest.get({ url: '/pay/paySign', data: { openId } });
+		const { appId, paySign, packageSign, nonceStr, timeStamp, signType } = result;
+		if (!paySign || !packageSign)
+			return wx.showToast({
+				title: '系统错误',
+			});
+		const params = {
+			appId,
+			timeStamp,
+			nonceStr,
+			paySign,
+			signType,
+			package: packageSign,
+		};
+		wx.requestPayment({
+			...params,
+			success(res) {
+				console.log(res, 111);
+			},
+			fail(res) {
+				console.log(res, 222);
+			},
+		});
 	},
 
 	// 切换tan
