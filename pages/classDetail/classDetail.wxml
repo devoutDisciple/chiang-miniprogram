@@ -56,10 +56,10 @@
                 <view class="service_txt">咨询</view>
             </view>
         </view>
-        <view class="apply" bindtap="onClickApply">
+        <view class="apply" data-type="1" bindtap="onClickApply">
             <view class="apply_btn">立即报名</view>
         </view>
-        <view class="cluster">
+        <view class="cluster" data-type="2" bindtap="onClickApply">
             <view class="cluster_btn">组团报名</view>
         </view>
     </view>

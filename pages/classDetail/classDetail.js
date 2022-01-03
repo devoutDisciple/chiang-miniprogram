@@ -63,9 +63,13 @@ Page({
 	},
 
 	// 点击立即报名
-	onClickApply: async function () {
+	onClickApply: async function (e) {
+		const { type } = e.currentTarget.dataset;
 		const openId = wx.getStorageSync('openId');
-		const result = await request.get({ url: '/pay/paySign', data: { openId } });
+		const result = await request.post({
+			url: '/pay/paySignup',
+			data: { openId, detailId: this.data.detailId, type },
+		});
 		const { appId, paySign, packageSign, nonceStr, timeStamp, signType } = result;
 		if (!paySign || !packageSign)
 			return wx.showToast({
