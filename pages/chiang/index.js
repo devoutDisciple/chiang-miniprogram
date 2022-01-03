@@ -1,57 +1,24 @@
+import { showLoading, hideLoading } from '../../utils/loading';
 import login from '../../utils/login';
+import request from '../../utils/request';
 
 Page({
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		tab: [
-			{
-				id: 1,
-				name: '全日制集训',
-			},
-			{
-				id: 2,
-				name: '寄宿Space',
-			},
-			{
-				id: 3,
-				name: '法硕',
-			},
-			{
-				id: 4,
-				name: '管综',
-			},
-		],
-		activeTabIdx: 1,
-		swiperList: [
-			{
-				id: 1,
-				text: 1,
-				url: '/asserts/temp/1.png',
-			},
-			{
-				id: 2,
-				text: 2,
-				url: '/asserts/temp/2.png',
-			},
-			{
-				id: 3,
-				text: 3,
-				url: '/asserts/temp/3.png',
-			},
-			{
-				id: 4,
-				text: 4,
-				url: '/asserts/temp/4.png',
-			},
-		],
-		classList: [
-			{
-				id: 1,
-				name: '热门课程',
-			},
-		],
+		// 类别
+		typeList: [],
+		// 选择的tab标签
+		selectTypeIdx: 0,
+		// 轮播图
+		swiperList: [],
+		// 课程list
+		projectList: [],
+		// 选中的班级下标
+		selectProjectIdx: 0,
+		// 课程list
+		subjectList: [],
 		phoneDialogVisible: false,
 	},
 
@@ -68,6 +35,16 @@ Page({
 		if (!phone) {
 			this.setData({ phoneDialogVisible: true });
 		}
+		this.init();
+	},
+
+	// 获取初始化数据
+	init: async function () {
+		showLoading();
+		// 获取轮播图
+		await this.getAllSwiper();
+		// 获取所有类别
+		await this.getAllType();
 	},
 
 	// 关闭获取手机号弹框
@@ -75,9 +52,49 @@ Page({
 		this.setData({ phoneDialogVisible: false });
 	},
 
-	// 点击item
+	// 获取swiper
+	getAllSwiper: async function () {
+		const result = (await request.get({ url: '/swiper/allSwiper' })) || [];
+		this.setData({ swiperList: result });
+	},
+
+	// 获取所有类别
+	getAllType: async function () {
+		const result = await request.get({ url: '/type/allType' });
+		this.setData({ typeList: result }, () => {
+			this.setData({ selectTypeIdx: 0 });
+			this.getAllProjectByTypeId(result[0].id);
+		});
+	},
+
+	// 获取所有班级
+	getAllProjectByTypeId: async function (typeid) {
+		const result = await request.get({ url: '/project/allProjectByTypeId', data: { typeid } });
+		this.setData({ projectList: result }, () => {
+			this.setData({ selectProjectIdx: 0 });
+			this.getAllSubjectByProjectId(result[0].id);
+		});
+	},
+
+	// 获取所有课程
+	getAllSubjectByProjectId: async function (projectid) {
+		const result = await request.get({ url: '/subject/allSubjectByProjectId', data: { projectid } });
+		this.setData({ subjectList: result });
+		hideLoading();
+	},
+
+	// 点击item，前往详情页面
 	onTapClassItem: function () {
 		wx.navigateTo({ url: '/pages/classDetail/classDetail' });
+	},
+
+	// 选择tab
+	onTapType: function (e) {
+		const { idx } = e.detail;
+		this.setData({ selectTypeIdx: idx }, () => {
+			const typeid = this.data.typeList[idx].id;
+			this.getAllProjectByTypeId(typeid);
+		});
 	},
 
 	/**
@@ -89,12 +106,6 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {},
-
-	// 选择tab
-	onTapTab: function (e) {
-		const { idx } = e.detail;
-		this.setData({ activeTabIdx: idx });
-	},
 
 	// 选择课程
 	onTapClassTab: function () {},

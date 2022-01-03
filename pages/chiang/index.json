@@ -3,7 +3,7 @@
 	"usingComponents": {
         "header": "/component/header/header",
         "tab": "/component/tab/tab",
-        "class-item": "/component/class/class",
+        "subject-item": "/component/subjectItem/subjectItem",
         "btm-tip": "/component/btmTip/btmTip",
         "phone-component": "/component/getPhone/getPhone"
 	},
