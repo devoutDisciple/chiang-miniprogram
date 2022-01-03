@@ -65,10 +65,8 @@ Page({
 		}
 		// 判断是否已经获取用户手机号
 		const phone = wx.getStorageSync('phone');
-		if (phone) {
-			console.log('已经获取手机号');
-		} else {
-			this.setData({ phoneDialogVisible: false });
+		if (!phone) {
+			this.setData({ phoneDialogVisible: true });
 		}
 	},
 

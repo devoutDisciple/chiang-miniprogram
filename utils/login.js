@@ -12,12 +12,13 @@ module.exports = {
 				post({ url: '/login/loginByUserId', data: { userId } })
 					.then((data) => {
 						app.globalData.userInfo = data;
-						const { id, username, photo, wx_openid } = data;
+						const { id, username, photo, wx_openid, phone } = data;
 						// 将用户信息缓存下来
 						wx.setStorageSync('userId', id);
 						wx.setStorageSync('username', username);
 						wx.setStorageSync('photo', photo);
 						wx.setStorageSync('openId', wx_openid);
+						wx.setStorageSync('phone', phone);
 						resolve(data);
 					})
 					.catch(() => reject())
@@ -33,13 +34,13 @@ module.exports = {
 						post({ url: '/login/loginByWxOpenid', data: { code, ...userinfo } })
 							.then((data) => {
 								app.globalData.userInfo = data;
-								const { id, username, photo, wx_openid } = data;
+								const { id, username, photo, wx_openid, phone } = data;
 								// 将用户信息缓存下来
 								wx.setStorageSync('userId', id);
 								wx.setStorageSync('username', username);
 								wx.setStorageSync('photo', photo);
 								wx.setStorageSync('openId', wx_openid);
-								console.log(data, 121);
+								wx.setStorageSync('phone', phone);
 								resolve(data);
 							})
 							.catch(() => reject())
