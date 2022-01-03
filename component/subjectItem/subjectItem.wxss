@@ -43,21 +43,18 @@
 
 .data_person {
     display: flex;
-    height: 100rpx;
+    height: 80rpx;
     font-size: 28rpx;
 }
 
-.data_person_img {
-    height: 100rpx;
-    width: 100rpx;
+.data_img {
+    min-width: 100rpx;
 }
 
-.data_person_name {
-    flex: 1;
-    display: flex;
-    align-items: flex-end;
-    color: #8a8a8a;
-    margin-left: 10rpx;
+.data_person_img {
+    height: 80rpx;
+    width: 80rpx;
+    margin-right: 20rpx;
 }
 
 .data_person_desc {

@@ -9,8 +9,13 @@
         <view class="desc_tag tag">阅卷人亲授</view>
     </view>
     <view class="data_person">
-        <image class="data_person_img" src="/asserts/temp/photo.png" />
-        <view class="data_person_name">罗老师</view>
-        <view class="data_person_desc">限时优惠3000元</view>
+        <view class="data_img">
+            <block wx:if="{{subject.teacher_detail && subject.teacher_detail.length !== 0}}">
+                <block wx:for="{{subject.teacher_detail}}" wx:key="index">
+                    <image class="data_person_img" src="{{item.photo}}" />
+                </block>
+            </block>
+        </view>
+        <view class="data_person_desc">限时优惠仅{{subject.price}}元</view>
     </view>
 </view>

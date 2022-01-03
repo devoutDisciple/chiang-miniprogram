@@ -10,35 +10,42 @@
         bindrefresherrefresh="onRefresh"
         show-scrollbar="{{false}}">
         <view class="intro">
-            <image src="/asserts/temp/1.png" class="intro_img"/>
-            <view class="intro_title">22年考研真题解析</view>
-            <view class="intro_time">2021.09.01-2021.12.27 | 3小时</view>
-            <view class="intro_person">限10000人 | 已报名435人</view>
-            <view class="intro_price"><text class="intro_price_sign">￥</text>899</view>
+            <image src="{{detail.url}}" class="intro_img" mode="widthFix"/>
+            <view class="intro_title">{{detail.title}}</view>
+            <view class="intro_time">{{detail.start_time}} - {{detail.end_time}}</view>
+            <view class="intro_person">限{{detail.limit_num}}人 | 已报名{{detail.total_person}}人</view>
+            <view class="intro_price"><text class="intro_price_sign">￥</text>{{detail.price}}</view>
         </view>
         <view class="teacher">
-            <view class="teacher_chunk">
-                <image class="teacher_photo" src="/asserts/temp/photo.png" />
-                <view class="teach_name">王老师</view>
-            </view>
-            <view class="teacher_chunk">
-                <image class="teacher_photo" src="/asserts/temp/photo.png" />
-                <view class="teach_name">王老师</view>
-            </view>
-            <view class="teacher_chunk">
-                <image class="teacher_photo" src="/asserts/temp/photo.png" />
-                <view class="teach_name">王老师</view>
-            </view>
+            <block wx:if="{{detail.teacher_detail && detail.teacher_detail.length !== 0}}">
+                <block wx:for="{{detail.teacher_detail}}" wx:key="index">
+                    <view class="teacher_chunk">
+                        <image class="teacher_photo" src="{{item.photo}}" />
+                        <view class="teach_name">{{item.name}}</view>
+                    </view>
+                </block>
+            </block>
         </view>
         <view class="split"></view>
         <view class="tab">
             <tab list="{{tab}}" activeIdx="{{activeTabIdx}}" bindOnTapTab="onTapTab"/>
         </view>
         <view class="detail">
-            <image class="detail_img" src="/asserts/temp/1.png" mode="widthFix"/>
-            <image class="detail_img" src="/asserts/temp/2.png" mode="widthFix"/>
-            <image class="detail_img" src="/asserts/temp/3.png" mode="widthFix"/>
-            <image class="detail_img" src="/asserts/temp/4.png" mode="widthFix"/>
+            <block wx:if="{{activeTabIdx === 0 && detail.detail_urls && detail.detail_urls.subUrls}}">
+                <block wx:for="{{detail.detail_urls.subUrls}}" wx:key="index">
+                    <image class="detail_img" src="{{item.url}}" mode="widthFix"/>
+                </block>
+            </block>
+            <block wx:if="{{activeTabIdx === 1 && detail.detail_urls && detail.detail_urls.teachUrls}}">
+                <block wx:for="{{detail.detail_urls.teachUrls}}" wx:key="index">
+                    <image class="detail_img" src="{{item.url}}" mode="widthFix"/>
+                </block>
+            </block>
+            <block wx:if="{{activeTabIdx === 2 && detail.detail_urls && detail.detail_urls.signupUrls}}">
+                <block wx:for="{{detail.detail_urls.signupUrls}}" wx:key="index">
+                    <image class="detail_img" src="{{item.url}}" mode="widthFix"/>
+                </block>
+            </block>
         </view>
         <view class="ellipse"></view>
     </scroll-view>

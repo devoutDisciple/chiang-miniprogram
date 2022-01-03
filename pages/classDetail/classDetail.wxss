@@ -21,7 +21,6 @@
 .intro_img {
     border-radius: 20rpx;
     width: calc(100vw - 40rpx);
-    height: calc((100vw - 40rpx) / 3);
 }
 
 .intro_title {

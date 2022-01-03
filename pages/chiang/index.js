@@ -19,6 +19,8 @@ Page({
 		selectProjectIdx: 0,
 		// 课程list
 		subjectList: [],
+		// 老师的基本信息
+		teachers: [],
 		phoneDialogVisible: false,
 	},
 
@@ -60,41 +62,56 @@ Page({
 
 	// 获取所有类别
 	getAllType: async function () {
+		showLoading();
 		const result = await request.get({ url: '/type/allType' });
 		this.setData({ typeList: result }, () => {
+			hideLoading();
 			this.setData({ selectTypeIdx: 0 });
-			this.getAllProjectByTypeId(result[0].id);
+			if (!result[0]) {
+				return this.setData({ projectList: [], subjectList: [] });
+			}
+			this.getAllProjectByTypeId(result[0]?.id);
 		});
 	},
 
 	// 获取所有班级
 	getAllProjectByTypeId: async function (typeid) {
+		showLoading();
 		const result = await request.get({ url: '/project/allProjectByTypeId', data: { typeid } });
 		this.setData({ projectList: result }, () => {
+			hideLoading();
 			this.setData({ selectProjectIdx: 0 });
-			this.getAllSubjectByProjectId(result[0].id);
+			if (!result[0]) {
+				return this.setData({ projectList: [], subjectList: [] });
+			}
+			this.getAllSubjectByProjectId(result[0]?.id);
 		});
 	},
 
 	// 获取所有课程
 	getAllSubjectByProjectId: async function (projectid) {
-		const result = await request.get({ url: '/subject/allSubjectByProjectId', data: { projectid } });
+		showLoading();
+		const result = await request.get({
+			url: '/subject/allSubjectByProjectId',
+			data: { projectid },
+		});
 		this.setData({ subjectList: result });
 		hideLoading();
 	},
 
-	// 点击item，前往详情页面
-	onTapClassItem: function () {
-		wx.navigateTo({ url: '/pages/classDetail/classDetail' });
-	},
-
-	// 选择tab
+	// 选择type
 	onTapType: function (e) {
 		const { idx } = e.detail;
 		this.setData({ selectTypeIdx: idx }, () => {
 			const typeid = this.data.typeList[idx].id;
 			this.getAllProjectByTypeId(typeid);
 		});
+	},
+
+	// 点击item，前往详情页面
+	onTapSubjectItem: function (e) {
+		const { id } = e.currentTarget.dataset.detail;
+		wx.navigateTo({ url: `/pages/classDetail/classDetail?id=${id}` });
 	},
 
 	/**

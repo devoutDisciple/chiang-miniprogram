@@ -23,4 +23,8 @@ Component({
 			this.triggerEvent('OnTap');
 		},
 	},
+
+	attached() {
+		console.log(this.data.subject);
+	},
 });

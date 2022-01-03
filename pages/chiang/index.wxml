@@ -37,19 +37,9 @@
         </view>
         <block wx:for="{{subjectList}}" wx:key="index">
             <view class="chunk" >
-                <subject-item subject="{{item}}" bindOnTap="onTapClassItem"/>
+                <subject-item subject="{{item}}" data-detail="{{item}}" bindOnTap="onTapSubjectItem"/>
             </view>
         </block>
-        
-        <view class="chunk">
-            <subject-item />
-        </view>
-        <view class="chunk">
-            <subject-item />
-        </view>
-        <view class="chunk">
-            <subject-item />
-        </view>
         <btm-tip />
         <phone-component visible="{{phoneDialogVisible}}" bindOnClose="onClosePhoneDialog"/>
     </scroll-view>

@@ -1,22 +1,29 @@
-import reqrest from '../../utils/request';
+import loading from '../../utils/loading';
+import request from '../../utils/request';
 
 Page({
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
+		// 页面详情id
+		detailId: '',
+		detail: {}, // 课程详情
 		refresherTriggered: false,
 		tab: [
 			{
 				id: 1,
+				key: 'sub',
 				name: '课程详情',
 			},
 			{
 				id: 2,
+				key: 'teach',
 				name: '师资团队',
 			},
 			{
 				id: 3,
+				key: 'signup',
 				name: '报名须知',
 			},
 		],
@@ -26,17 +33,26 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function () {},
+	onLoad: function (options) {
+		const { id } = options;
+		if (!id) {
+			return wx.switchTab({
+				url: '/pages/chiang/index',
+			});
+		}
+		this.setData({ detailId: id }, () => {
+			this.getSubjectDetailById(id);
+		});
+	},
 
-	/**
-	 * 生命周期函数--监听页面初次渲染完成
-	 */
-	onReady: function () {},
-
-	/**
-	 * 生命周期函数--监听页面显示
-	 */
-	onShow: function () {},
+	// 获取课程详情
+	getSubjectDetailById: async function (id) {
+		loading.showLoading();
+		const detail = await request.get({ url: '/subject/subjectDetailById', data: { id } });
+		console.log(detail, 122);
+		this.setData({ detail: detail });
+		loading.hideLoading();
+	},
 
 	// 刷新
 	onRefresh: function () {
@@ -49,7 +65,7 @@ Page({
 	// 点击立即报名
 	onClickApply: async function () {
 		const openId = wx.getStorageSync('openId');
-		const result = await reqrest.get({ url: '/pay/paySign', data: { openId } });
+		const result = await request.get({ url: '/pay/paySign', data: { openId } });
 		const { appId, paySign, packageSign, nonceStr, timeStamp, signType } = result;
 		if (!paySign || !packageSign)
 			return wx.showToast({
