@@ -9,19 +9,19 @@
     bindrefresherrefresh="onRefresh"
     show-scrollbar="{{false}}">
         <view class="chunk">
-            <class-item />
+            <subject-item />
         </view>
         <view class="chunk">
-            <class-item />
+            <subject-item />
         </view>
         <view class="chunk">
-            <class-item />
+            <subject-item />
         </view>
         <view class="chunk">
-            <class-item />
+            <subject-item />
         </view>
         <view class="chunk">
-            <class-item />
+            <subject-item />
         </view>
         <btm-tip />
 </scroll-view>

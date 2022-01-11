@@ -1,6 +1,6 @@
 {
 	"usingComponents": {
-		"class-item": "/component/class/class",
+		"subject-item": "/component/subjectItem/subjectItem",
 		"btm-tip": "/component/btmTip/btmTip"
 	},
 	"navigationBarTitleText": "课程"

@@ -10,6 +10,8 @@ Page({
 		detailId: '',
 		detail: {}, // 课程详情
 		refresherTriggered: false,
+		type: 1, // 1-未报名和未组团 2-已报名 3-已组团
+		teamId: '', // 组团的id
 		tab: [
 			{
 				id: 1,
@@ -49,9 +51,29 @@ Page({
 	getSubjectDetailById: async function (id) {
 		loading.showLoading();
 		const detail = await request.get({ url: '/subject/subjectDetailById', data: { id } });
-		console.log(detail, 122);
 		this.setData({ detail: detail });
+		console.log(detail, 11);
+		// 获取订单详情
+		await this.getUserSignUp(detail);
 		loading.hideLoading();
+	},
+
+	// 获取用户是否已报名该课程
+	getUserSignUp: async function (detail) {
+		const userid = wx.getStorageSync('userId');
+		const orderDetail = await request.get({
+			url: '/order/orderDetailByUserid',
+			data: { userid: userid, subId: detail.id, proId: detail.project_id },
+		});
+		if (!orderDetail.type) {
+			this.setData({ type: 1 });
+		}
+		if (orderDetail.type === 1) {
+			this.setData({ type: 2 });
+		}
+		if (orderDetail.type === 2) {
+			this.setData({ type: 3, teamId: orderDetail.team_uuid });
+		}
 	},
 
 	// 刷新
@@ -67,9 +89,18 @@ Page({
 		const { type } = e.currentTarget.dataset;
 		const openId = wx.getStorageSync('openId');
 		const userId = wx.getStorageSync('userId');
+		const { detail } = this.data;
+		const data = {
+			openId,
+			type,
+			userId,
+			project_id: detail.project_id,
+			subject_id: detail.id,
+		};
+		if (type === 2) data.teamId = this.data.teamId;
 		const result = await request.post({
 			url: '/pay/paySignup',
-			data: { openId, detailId: this.data.detailId, type, userId },
+			data: data,
 		});
 		const { appId, paySign, packageSign, nonceStr, timeStamp, signType } = result;
 		if (!paySign || !packageSign)
