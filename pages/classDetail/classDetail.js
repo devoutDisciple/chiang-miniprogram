@@ -1,5 +1,6 @@
 import loading from '../../utils/loading';
 import request from '../../utils/request';
+import login from '../../utils/login';
 
 Page({
 	/**
@@ -11,7 +12,9 @@ Page({
 		detail: {}, // 课程详情
 		refresherTriggered: false,
 		type: 1, // 1-未报名和未组团 2-已报名 3-已组团
-		teamId: '', // 组团的id
+		team_uuid: '', // 组团的id
+		teamDetail: {}, // 组团详情
+		phoneDialogVisible: false, // phone的弹框
 		tab: [
 			{
 				id: 1,
@@ -42,9 +45,27 @@ Page({
 				url: '/pages/chiang/index',
 			});
 		}
+		this.getUserLogin();
 		this.setData({ detailId: id }, () => {
 			this.getSubjectDetailById(id);
 		});
+	},
+
+	// 查看用户是否登录，并获取手机号
+	getUserLogin: function () {
+		if (!login.isLogin()) {
+			login.getLogin();
+		}
+		// 判断是否已经获取用户手机号
+		const phone = wx.getStorageSync('phone');
+		if (!phone) {
+			this.setData({ phoneDialogVisible: true });
+		}
+	},
+
+	// 关闭获取手机号弹框
+	onClosePhoneDialog: function () {
+		this.setData({ phoneDialogVisible: false });
 	},
 
 	// 获取课程详情
@@ -52,8 +73,7 @@ Page({
 		loading.showLoading();
 		const detail = await request.get({ url: '/subject/subjectDetailById', data: { id } });
 		this.setData({ detail: detail });
-		console.log(detail, 11);
-		// 获取订单详情
+		// 获取报名或者组团详情
 		await this.getUserSignUp(detail);
 		loading.hideLoading();
 	},
@@ -72,8 +92,19 @@ Page({
 			this.setData({ type: 2 });
 		}
 		if (orderDetail.type === 2) {
-			this.setData({ type: 3, teamId: orderDetail.team_uuid });
+			this.setData({ type: 3, team_uuid: orderDetail.team_uuid }, () => {
+				this.getTeamDetail();
+			});
 		}
+	},
+
+	// 根据teamUUid获取组团详情
+	getTeamDetail: async function (team_uuid) {
+		const teamDetail = await request.get({
+			url: '/team/teamDetailByTeamUuid',
+			data: { team_uuid },
+		});
+		this.setData({ teamDetail: teamDetail, team_uuid: teamDetail.team_uuid });
 	},
 
 	// 刷新
@@ -86,23 +117,31 @@ Page({
 
 	// 点击立即报名
 	onClickApply: async function (e) {
-		const { type } = e.currentTarget.dataset;
+		const self = this;
+		const { btntype } = e.currentTarget.dataset;
 		const openId = wx.getStorageSync('openId');
 		const userId = wx.getStorageSync('userId');
+		if (!userId) {
+			return login.getLogin();
+		}
+		// 判断是否已经获取用户手机号
+		const phone = wx.getStorageSync('phone');
+		if (!phone) {
+			return this.setData({ phoneDialogVisible: true });
+		}
 		const { detail } = this.data;
 		const data = {
 			openId,
-			type,
+			type: btntype,
 			userId,
 			project_id: detail.project_id,
 			subject_id: detail.id,
 		};
-		if (type === 2) data.teamId = this.data.teamId;
 		const result = await request.post({
 			url: '/pay/paySignup',
 			data: data,
 		});
-		const { appId, paySign, packageSign, nonceStr, timeStamp, signType } = result;
+		const { appId, paySign, packageSign, nonceStr, timeStamp } = result;
 		if (!paySign || !packageSign)
 			return wx.showToast({
 				title: '系统错误',
@@ -112,17 +151,22 @@ Page({
 			timeStamp,
 			nonceStr,
 			paySign,
-			signType,
+			signType: 'RSA',
 			package: packageSign,
 		};
 		wx.requestPayment({
 			...params,
 			success(res) {
-				console.log(res, 111);
+				if (res.errMsg === 'requestPayment:ok') {
+					self.setData({ type: Number(btntype) === 1 ? 2 : 3 });
+					if (Number(btntype) === 2) {
+						self.setData({ team_uuid: result.team_uuid }, () => {
+							self.getTeamDetail();
+						});
+					}
+				}
 			},
-			fail(res) {
-				console.log(res, 222);
-			},
+			fail() {},
 		});
 	},
 

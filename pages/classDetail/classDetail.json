@@ -1,6 +1,7 @@
 {
 	"usingComponents": {
-		"tab": "/component/tab/tab"
+		"tab": "/component/tab/tab",
+        "phone-component": "/component/getPhone/getPhone"
 	},
 	"navigationBarTitleText": "课程详情"
 }

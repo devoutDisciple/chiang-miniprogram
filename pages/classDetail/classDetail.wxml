@@ -56,11 +56,20 @@
                 <view class="service_txt">咨询</view>
             </view>
         </view>
-        <view class="apply" data-type="1" bindtap="onClickApply">
+        <view class="apply" data-btntype="1" bindtap="onClickApply">
             <view class="apply_btn">立即报名</view>
         </view>
-        <view class="cluster" data-type="2" bindtap="onClickApply">
-            <view class="cluster_btn">组团报名</view>
-        </view>
+        <block wx:if="{{type === 1 || type === 2}}">
+            <view class="cluster" data-btntype="2" bindtap="onClickApply">
+                <view class="cluster_btn">组团报名</view>
+            </view>
+        </block>
+        <block wx:if="{{type === 3}}">
+            <view class="cluster" data-btntype="2" bindtap="onClickApply">
+                <view class="cluster_btn">邀请组团</view>
+            </view>
+        </block>
+        
     </view>
+    <phone-component visible="{{phoneDialogVisible}}" bindOnClose="onClosePhoneDialog"/>
 </view>
