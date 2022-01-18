@@ -112,11 +112,10 @@ Page({
 	},
 
 	// 刷新
-	onRefresh: function () {
+	onRefresh: async function () {
 		this.setData({ refresherTriggered: true });
-		setTimeout(() => {
-			this.setData({ refresherTriggered: false });
-		}, 1000);
+		await this.getSubjectDetailById(this.data.detailId);
+		this.setData({ refresherTriggered: false });
 	},
 
 	// 点击立即报名

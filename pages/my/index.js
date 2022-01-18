@@ -1,4 +1,6 @@
 import utils from '../../utils/deviceUtil';
+import login from '../../utils/login';
+import request from '../../utils/request';
 
 Page({
 	/**
@@ -7,6 +9,8 @@ Page({
 	data: {
 		headerHight: 60,
 		refresherTriggered: false,
+		username: '',
+		photo: '',
 	},
 
 	/**
@@ -14,6 +18,35 @@ Page({
 	 */
 	onLoad: function () {
 		this.getDeviceInfo();
+		this.getUserInfo();
+	},
+
+	getUserInfo: function () {
+		if (!login.isLogin()) {
+			return login.getLogin();
+		}
+		const username = wx.getStorageSync('username');
+		const photo = wx.getStorageSync('photo');
+		this.setData({ username, photo });
+	},
+
+	getUserProfile: function () {
+		wx.getUserProfile({
+			desc: '驰昂考研想要获取您的基本信息',
+			success: (res) => {
+				if (res.userInfo) {
+					const { nickName, avatarUrl } = res.userInfo;
+					const userid = wx.getStorageSync('userId');
+					request.post({
+						url: '/user/updateInfo',
+						data: { userid: userid, username: nickName, photo: avatarUrl },
+					});
+					wx.setStorageSync('username', nickName);
+					wx.setStorageSync('photo', avatarUrl);
+					this.setData({ username: nickName, photo: avatarUrl });
+				}
+			},
+		});
 	},
 
 	/**
@@ -28,7 +61,6 @@ Page({
 
 	// 刷新
 	onRefresh: function () {
-		console.log(123);
 		this.setData({ refresherTriggered: true });
 		setTimeout(() => {
 			this.setData({ refresherTriggered: false });
@@ -47,7 +79,6 @@ Page({
 				paddingLeft,
 				paddingTop,
 			} = res;
-			console.log(res, 121);
 			this.setData({
 				headerHight,
 				statusHeight,

@@ -14,11 +14,22 @@
     display: flex;
     margin-top: 50rpx;
     padding: 20rpx;
+    position: relative;
+}
+
+.user_btn {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0;
 }
 
 .person_img {
     height: 150rpx;
     width: 150rpx;
+    border-radius: 100%;
 }
 
 .person_name {
