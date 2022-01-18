@@ -8,6 +8,14 @@ Component({
 			type: Object,
 			value: {},
 		},
+		pageName: {
+			type: String,
+			value: '',
+		},
+		type: {
+			type: Number,
+			value: 1,
+		},
 	},
 
 	/**

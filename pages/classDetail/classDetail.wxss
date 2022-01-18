@@ -144,6 +144,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    position: relative;
 }
 
 .cluster_btn {
@@ -156,4 +157,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.cluster_share_btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
 }

@@ -39,11 +39,15 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		const { id } = options;
+		const { id, teamUuid } = options;
 		if (!id) {
 			return wx.switchTab({
 				url: '/pages/chiang/index',
 			});
+		}
+		if (teamUuid) {
+			this.setData({ team_uuid: teamUuid });
+			this.getTeamDetail(teamUuid);
 		}
 		this.getUserLogin();
 		this.setData({ detailId: id }, () => {
@@ -93,7 +97,7 @@ Page({
 		}
 		if (orderDetail.type === 2) {
 			this.setData({ type: 3, team_uuid: orderDetail.team_uuid }, () => {
-				this.getTeamDetail();
+				this.getTeamDetail(orderDetail.team_uuid);
 			});
 		}
 	},
@@ -161,7 +165,7 @@ Page({
 					self.setData({ type: Number(btntype) === 1 ? 2 : 3 });
 					if (Number(btntype) === 2) {
 						self.setData({ team_uuid: result.team_uuid }, () => {
-							self.getTeamDetail();
+							self.getTeamDetail(result.team_uuid);
 						});
 					}
 				}
@@ -174,5 +178,14 @@ Page({
 	onTapTab: function (e) {
 		const { idx } = e.detail;
 		this.setData({ activeTabIdx: idx });
+	},
+
+	onShareAppMessage: function () {
+		const { detailId, team_uuid } = this.data;
+		const path = `/classDetail/calssDetail?teamUuid=${team_uuid}&id=${detailId}`;
+		return {
+			title: '驰昂考研',
+			path,
+		};
 	},
 });
