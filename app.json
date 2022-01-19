@@ -31,21 +31,21 @@
     "list": [
       {
         "pagePath": "pages/chiang/index",
-        "text": "驰昂",
+        "text": "首页",
         "iconPath": "asserts/tabBar/home.png",
         "selectedIconPath": "asserts/tabBar/home_select.png"
       },
       {
         "pagePath": "pages/order/index",
         "text": "课程",
-        "iconPath": "asserts/tabBar/square.png",
-        "selectedIconPath": "asserts/tabBar/square_select.png"
+        "iconPath": "asserts/tabBar/order.png",
+        "selectedIconPath": "asserts/tabBar/order_select.png"
       },
       {
         "pagePath": "pages/my/index",
         "text": "我的",
-        "iconPath": "asserts/tabBar/rest.png",
-        "selectedIconPath": "asserts/tabBar/rest_select.png"
+        "iconPath": "asserts/tabBar/my.png",
+        "selectedIconPath": "asserts/tabBar/my_select.png"
       }
     ]
   }
