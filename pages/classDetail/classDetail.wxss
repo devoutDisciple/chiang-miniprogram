@@ -108,6 +108,14 @@
     align-items: center;
     justify-content: center;
     width: 120rpx;
+    position: relative;
+}
+
+.service_btn {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
 }
 
 .service_icon {

@@ -1,0 +1,7 @@
+{
+	"usingComponents": {
+		"subject-item": "/component/subjectItem/subjectItem",
+		"btm-tip": "/component/btmTip/btmTip"
+	},
+	"navigationBarTitleText": "报名课程"
+}

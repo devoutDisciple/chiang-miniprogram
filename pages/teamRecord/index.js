@@ -1,5 +1,6 @@
 import loading from '../../utils/loading';
 import request from '../../utils/request';
+import login from '../../utils/login';
 
 // pages/order/index.js
 Page({
@@ -7,27 +8,26 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		payList: [],
+		orderList: [],
 		refresherTriggered: false,
-		keywords: '',
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function (option) {
-		const { keywords } = option;
-		this.setData({ keywords: keywords }, () => {
-			this.getSubjectByKeywords();
-		});
+	onLoad: function () {
+		this.getUserOrder();
 	},
 
 	// 获取课程
-	getSubjectByKeywords: async function () {
+	getUserOrder: async function () {
+		if (!login.isLogin()) {
+			login.getLogin();
+		}
 		loading.showLoading();
 		const userId = wx.getStorageSync('userId');
-		const result = await request.get({ url: '/pay/allPayByUserId', data: { userId: userId } });
-		this.setData({ payList: result });
+		const result = await request.get({ url: '/order/allOrderByUseridAndType', data: { userid: userId, type: 2 } });
+		this.setData({ orderList: result });
 		loading.hideLoading();
 	},
 
@@ -40,7 +40,7 @@ Page({
 	// 刷新
 	onRefresh: async function () {
 		this.setData({ refresherTriggered: true });
-		await this.getSubjectByKeywords();
+		await this.getUserOrder();
 		this.setData({ refresherTriggered: false });
 	},
 });

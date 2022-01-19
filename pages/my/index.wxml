@@ -28,12 +28,14 @@
             </block>
         </view>
         <view class="setting">
-            <listItem iconName="order" text="账单明细" isFirst />
-            <listItem iconName="team" text="组团记录" />
-            <listItem iconName="class" text="报名课程" isLast />
+            <listItem iconName="order" text="账单明细" isFirst data-key="bill" bindtap = "onTapItem"/>
+            <listItem iconName="team" text="组团记录" data-key="team" bindtap = "onTapItem"/>
+            <listItem iconName="class" text="报名课程" isLast data-key="class" bindtap = "onTapItem"/>
         </view>
         <view class="setting">
-            <listItem iconName="service" text="联系客服" isFirst />
-            <listItem iconName="our" text="关于我们" isLast />
+            <listItem iconName="service" text="联系客服" isFirst data-key="service" bindtap = "onTapItem">
+                <button class="service_btn" open-type="contact" bindcontact="handleContact">联系客服</button>
+            </listItem>
+            <listItem iconName="our" text="关于我们" isLast  data-key="our" bindtap = "onTapItem"/>
         </view>
 </scroll-view>

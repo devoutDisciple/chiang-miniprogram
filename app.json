@@ -5,7 +5,10 @@
     "pages/order/index",
     "pages/classDetail/classDetail",
     "pages/bill/index",
-    "pages/search/index"
+    "pages/search/index",
+    "pages/aboutUs/index",
+    "pages/signupRecord/index",
+    "pages/teamRecord/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

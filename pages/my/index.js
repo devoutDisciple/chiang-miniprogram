@@ -49,22 +49,12 @@ Page({
 		});
 	},
 
-	/**
-	 * 生命周期函数--监听页面初次渲染完成
-	 */
-	onReady: function () {},
-
-	/**
-	 * 生命周期函数--监听页面显示
-	 */
-	onShow: function () {},
-
 	// 刷新
 	onRefresh: function () {
 		this.setData({ refresherTriggered: true });
 		setTimeout(() => {
 			this.setData({ refresherTriggered: false });
-		}, 3000);
+		}, 1000);
 	},
 
 	getDeviceInfo: function () {
@@ -91,23 +81,33 @@ Page({
 		});
 	},
 
-	/**
-	 * 生命周期函数--监听页面卸载
-	 */
-	onUnload: function () {},
-
-	/**
-	 * 页面相关事件处理函数--监听用户下拉动作
-	 */
-	onPullDownRefresh: function () {},
-
-	/**
-	 * 页面上拉触底事件的处理函数
-	 */
-	onReachBottom: function () {},
-
-	/**
-	 * 用户点击右上角分享
-	 */
-	onShareAppMessage: function () {},
+	// 点击选择条目
+	onTapItem: function (e) {
+		console.log(e, 111);
+		const { key } = e.currentTarget.dataset;
+		switch (key) {
+			case 'bill':
+				wx.navigateTo({
+					url: '/pages/bill/index',
+				});
+				break;
+			case 'our':
+				wx.navigateTo({
+					url: '/pages/aboutUs/index',
+				});
+				break;
+			case 'team':
+				wx.navigateTo({
+					url: '/pages/teamRecord/index',
+				});
+				break;
+			case 'class':
+				wx.navigateTo({
+					url: '/pages/signupRecord/index',
+				});
+				break;
+			default:
+				break;
+		}
+	},
 });

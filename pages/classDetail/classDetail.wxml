@@ -55,6 +55,7 @@
                 <image class="service_icon" src="/asserts/public/zixun.png" />
                 <view class="service_txt">咨询</view>
             </view>
+            <button class="service_btn" open-type="contact" bindcontact="handleContact">联系客服</button>
         </view>
         
         <block wx:if="{{type === 1}}">

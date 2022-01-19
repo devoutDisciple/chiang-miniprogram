@@ -1,0 +1,22 @@
+<scroll-view
+    class="class"
+    scroll-y="{{true}}"
+    enhanced="{{true}}"
+    enable-flex="{{true}}"
+    refresher-background="#fff"
+    refresher-triggered="{{refresherTriggered}}"
+    refresher-enabled="{{true}}"
+    bindrefresherrefresh="onRefresh"
+    show-scrollbar="{{false}}">
+        <block wx:if="{{orderList && orderList.length !== 0}}">
+            <block wx:for="{{orderList}}" wx:key="id">
+                <view class="chunk">
+                    <subject-item pageName="order" type="{{item.type}}" subject="{{item.subjectDetail}}" data-detail="{{item.subjectDetail}}" bindOnTap="onTapSubjectItem"/>
+                </view>
+            </block>
+            <btm-tip />
+        </block>
+        <block wx:else>
+            <view class="no-classdata">暂无数据</view>
+        </block>
+</scroll-view>

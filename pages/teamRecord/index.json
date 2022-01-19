@@ -1,0 +1,7 @@
+{
+	"usingComponents": {
+		"subject-item": "/component/subjectItem/subjectItem",
+		"btm-tip": "/component/btmTip/btmTip"
+	},
+	"navigationBarTitleText": "组团记录"
+}
