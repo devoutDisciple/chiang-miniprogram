@@ -29,6 +29,24 @@
           "pathName": "pages/classDetail/classDetail",
           "query": "id=1&teamUuid=GHJXAOHOGQ901642512224",
           "scene": null
+        },
+        {
+          "name": "账单详情",
+          "pathName": "pages/bill/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "首页",
+          "pathName": "pages/chiang/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "搜索",
+          "pathName": "pages/search/index",
+          "query": "keywords=321",
+          "scene": null
         }
       ]
     }

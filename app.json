@@ -3,7 +3,9 @@
     "pages/chiang/index",
     "pages/my/index",
     "pages/order/index",
-    "pages/classDetail/classDetail"
+    "pages/classDetail/classDetail",
+    "pages/bill/index",
+    "pages/search/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

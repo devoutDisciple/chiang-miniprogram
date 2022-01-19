@@ -1,6 +1,6 @@
 <view class="wrap">
     <view class="top">
-        <header text="我的"/>
+        <header text="我的" bindOnChange="onInputChange" bindOnConfirm="onConfirmIpt"/>
         <tab list="{{ typeList }}" activeIdx="{{selectTypeIdx}}" bindOnTapTab="onTapType"/>
         <!-- <scroll-view scroll-x class="tab" enhanced="{{true}}" enable-flex="true">
             <block wx:for="{{tab}}" wx:key="id">

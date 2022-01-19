@@ -22,6 +22,7 @@ Page({
 		// 老师的基本信息
 		teachers: [],
 		phoneDialogVisible: false,
+		iptValue: '',
 	},
 
 	/**
@@ -38,6 +39,10 @@ Page({
 			this.setData({ phoneDialogVisible: true });
 		}
 		this.init();
+		wx.showShareMenu({
+			withShareTicket: true,
+			menus: ['shareAppMessage', 'shareTimeline'],
+		});
 	},
 
 	// 获取初始化数据
@@ -115,40 +120,32 @@ Page({
 	},
 
 	/**
-	 * 生命周期函数--监听页面初次渲染完成
-	 */
-	onReady: function () {},
-
-	/**
-	 * 生命周期函数--监听页面显示
-	 */
-	onShow: function () {},
-
-	// 选择课程
-	onTapClassTab: function () {},
-
-	/**
-	 * 生命周期函数--监听页面隐藏
-	 */
-	onHide: function () {},
-
-	/**
-	 * 生命周期函数--监听页面卸载
-	 */
-	onUnload: function () {},
-
-	/**
-	 * 页面相关事件处理函数--监听用户下拉动作
-	 */
-	onPullDownRefresh: function () {},
-
-	/**
-	 * 页面上拉触底事件的处理函数
-	 */
-	onReachBottom: function () {},
-
-	/**
 	 * 用户点击右上角分享
 	 */
-	onShareAppMessage: function () {},
+	onShareAppMessage: function () {
+		return {
+			title: '驰昂考研',
+			path: '/home/index',
+		};
+	},
+
+	// 输入框改变
+	onInputChange: function (e) {
+		const { value } = e.detail;
+		this.setData({ iptValue: value });
+	},
+
+	// 输入确定搜索
+	onConfirmIpt: function () {
+		const value = String(this.data.iptValue).trim();
+		if (!value) {
+			return wx.showToast({
+				title: '请输入条件',
+				icon: 'error',
+			});
+		}
+		wx.navigateTo({
+			url: `/pages/search/index?keywords=${value}`,
+		});
+	},
 });

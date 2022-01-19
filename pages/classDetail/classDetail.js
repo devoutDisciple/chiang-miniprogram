@@ -181,7 +181,10 @@ Page({
 
 	onShareAppMessage: function () {
 		const { detailId, team_uuid } = this.data;
-		const path = `/classDetail/calssDetail?teamUuid=${team_uuid}&id=${detailId}`;
+		let path = `/classDetail/calssDetail?id=${detailId}`;
+		if (team_uuid) {
+			path += `&teamUuid=${team_uuid}`;
+		}
 		return {
 			title: '驰昂考研',
 			path,

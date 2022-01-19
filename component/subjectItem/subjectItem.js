@@ -32,7 +32,5 @@ Component({
 		},
 	},
 
-	attached() {
-		console.log(this.data.subject);
-	},
+	attached() {},
 });
