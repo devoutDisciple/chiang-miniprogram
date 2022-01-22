@@ -2,23 +2,6 @@
     <view class="top">
         <header text="我的" bindOnChange="onInputChange" bindOnConfirm="onConfirmIpt"/>
         <tab list="{{ typeList }}" activeIdx="{{selectTypeIdx}}" bindOnTapTab="onTapType"/>
-        <!-- <scroll-view scroll-x class="tab" enhanced="{{true}}" enable-flex="true">
-            <block wx:for="{{tab}}" wx:key="id">
-                <view bind:tap="onTapTab" data-idx="{{index}}" class="tab_item {{activeTabIdx === index ? 'tab_item_active' : ''}}">
-                    {{item.name}}
-                    <block wx:if="{{ activeTabIdx === index }}">
-                        <view class="tab_item_border"></view>
-                    </block>
-                </view>
-            </block>
-        </scroll-view> -->
-        <!-- <view class="tab">
-            <van-tabs line-width="{{25}}" ellipsis="{{false}}" active="{{ active }}" sticky="{{ true }}" bind:change="onChange">
-                <block wx:for="{{tab}}" wx:key="id">
-                    <van-tab title="{{item.name}}" />
-                </block>
-            </van-tabs>
-        </view> -->
     </view>
      <scroll-view 
         scroll-y="{{true}}" 
@@ -33,14 +16,20 @@
             </block>
         </swiper>
         <view class="class">
-            <tab list="{{projectList}}" activeIdx="{{selectProjectIdx}}" bindOnTapTab="onTapClassTab"/>
+            <tab list="{{projectList}}" activeIdx="{{selectProjectIdx}}" bindOnTapTab="onTapProjectTab"/>
         </view>
-        <block wx:for="{{subjectList}}" wx:key="index">
-            <view class="chunk" >
-                <subject-item subject="{{item}}" data-detail="{{item}}" bindOnTap="onTapSubjectItem"/>
-            </view>
+        <block wx:if="{{subjectList && subjectList.length !== 0}}">
+            <block wx:for="{{subjectList}}" wx:key="index">
+                <view class="chunk" >
+                    <subject-item subject="{{item}}" data-detail="{{item}}" bindOnTap="onTapSubjectItem"/>
+                </view>
+            </block>
+            <btm-tip />
         </block>
-        <btm-tip />
+        <block wx:else>
+            <view class="content_empty">暂无课程</view>
+        </block>
+        
         <phone-component visible="{{phoneDialogVisible}}" bindOnClose="onClosePhoneDialog"/>
     </scroll-view>
 </view>

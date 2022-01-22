@@ -113,6 +113,16 @@ Page({
 		});
 	},
 
+	// 选择project
+	onTapProjectTab: function (e) {
+		console.log(e, 233);
+		const { idx } = e.detail;
+		this.setData({ selectProjectIdx: idx }, () => {
+			const projectId = this.data.projectList[idx].id;
+			this.getAllSubjectByProjectId(projectId);
+		});
+	},
+
 	// 点击item，前往详情页面
 	onTapSubjectItem: function (e) {
 		const { id } = e.currentTarget.dataset.detail;
