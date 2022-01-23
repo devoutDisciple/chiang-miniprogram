@@ -12,7 +12,7 @@ Page({
 		detail: {}, // 课程详情
 		refresherTriggered: false,
 		type: 1, // 1-未报名和未组团 2-已报名 3-已组团
-		team_uuid: '', // 组团的id
+		tid: '', // 组团的id
 		teamDetail: {}, // 组团详情
 		phoneDialogVisible: false, // phone的弹框
 		tab: [
@@ -46,7 +46,7 @@ Page({
 			});
 		}
 		if (teamUuid) {
-			this.setData({ team_uuid: teamUuid });
+			this.setData({ tid: teamUuid });
 			this.getTeamDetail(teamUuid);
 		}
 		this.getUserLogin();
@@ -77,7 +77,6 @@ Page({
 		loading.showLoading();
 		const detail = await request.get({ url: '/subject/subjectDetailById', data: { id } });
 		this.setData({ detail: detail });
-		console.log(detail, 1232);
 		// 获取报名或者组团详情
 		await this.getUserSignUp(detail);
 		loading.hideLoading();
@@ -90,6 +89,7 @@ Page({
 			url: '/order/orderDetailByUserid',
 			data: { userid: userid, subId: detail.id, proId: detail.project_id },
 		});
+		if (!orderDetail) return;
 		if (!orderDetail.type) {
 			this.setData({ type: 1 });
 		}
@@ -97,7 +97,7 @@ Page({
 			this.setData({ type: 2 });
 		}
 		if (orderDetail.type === 2) {
-			this.setData({ type: 3, team_uuid: orderDetail.team_uuid }, () => {
+			this.setData({ type: 3, tid: orderDetail.team_uuid }, () => {
 				this.getTeamDetail(orderDetail.team_uuid);
 			});
 		}
@@ -109,7 +109,7 @@ Page({
 			url: '/team/teamDetailByTeamUuid',
 			data: { team_uuid },
 		});
-		this.setData({ teamDetail: teamDetail, team_uuid: teamDetail.team_uuid });
+		this.setData({ teamDetail: teamDetail, tid: teamDetail.uuid });
 	},
 
 	// 刷新
@@ -133,7 +133,7 @@ Page({
 		if (!phone) {
 			return this.setData({ phoneDialogVisible: true });
 		}
-		const { detail } = this.data;
+		const { detail, tid } = this.data;
 		const data = {
 			openId,
 			type: btntype,
@@ -141,11 +141,14 @@ Page({
 			project_id: detail.project_id,
 			subject_id: detail.id,
 		};
+		if (tid) {
+			data.teamId = tid;
+		}
 		const result = await request.post({
 			url: '/pay/paySignup',
 			data: data,
 		});
-		const { appId, paySign, packageSign, nonceStr, timeStamp } = result;
+		const { appId, paySign, packageSign, nonceStr, timeStamp, team_uuid } = result;
 		if (!paySign || !packageSign)
 			return wx.showToast({
 				title: '系统错误',
@@ -164,9 +167,8 @@ Page({
 				if (res.errMsg === 'requestPayment:ok') {
 					self.setData({ type: Number(btntype) === 1 ? 2 : 3 });
 					if (Number(btntype) === 2) {
-						self.setData({ team_uuid: result.team_uuid }, () => {
-							self.getTeamDetail(result.team_uuid);
-						});
+						self.setData({ tid: team_uuid });
+						// self.getTeamDetail(team_uuid);
 					}
 				}
 			},
@@ -181,10 +183,10 @@ Page({
 	},
 
 	onShareAppMessage: function () {
-		const { detailId, team_uuid } = this.data;
-		let path = `/classDetail/calssDetail?id=${detailId}`;
-		if (team_uuid) {
-			path += `&teamUuid=${team_uuid}`;
+		const { detailId, tid } = this.data;
+		let path = `/pages/classDetail/classDetail?id=${detailId}`;
+		if (tid) {
+			path += `&teamUuid=${tid}`;
 		}
 		return {
 			title: '驰昂考研',
