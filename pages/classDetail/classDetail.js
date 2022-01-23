@@ -77,6 +77,7 @@ Page({
 		loading.showLoading();
 		const detail = await request.get({ url: '/subject/subjectDetailById', data: { id } });
 		this.setData({ detail: detail });
+		console.log(detail, 1232);
 		// 获取报名或者组团详情
 		await this.getUserSignUp(detail);
 		loading.hideLoading();
@@ -189,5 +190,14 @@ Page({
 			title: '驰昂考研',
 			path,
 		};
+	},
+
+	// 预览图片
+	onPreviewImg: function (e) {
+		const { url } = e.currentTarget.dataset;
+		wx.previewImage({
+			urls: [url],
+			showmenu: true,
+		});
 	},
 });

@@ -10,7 +10,7 @@
         bindrefresherrefresh="onRefresh"
         show-scrollbar="{{false}}">
         <view class="intro">
-            <image src="{{detail.url}}" class="intro_img" mode="widthFix"/>
+            <image bindtap="onPreviewImg" data-url="{{detail.detail_urls.url}}" src="{{detail.detail_urls.url}}" class="intro_img" mode="widthFix"/>
             <view class="intro_title">{{detail.title}}</view>
             <view class="intro_time">{{detail.start_time}} - {{detail.end_time}}</view>
             <view class="intro_person">限{{detail.limit_num}}人 | 已报名{{detail.total_person}}人</view>
@@ -31,19 +31,19 @@
             <tab list="{{tab}}" activeIdx="{{activeTabIdx}}" bindOnTapTab="onTapTab"/>
         </view>
         <view class="detail">
-            <block wx:if="{{activeTabIdx === 0 && detail.detail_urls && detail.detail_urls.subUrls}}">
-                <block wx:for="{{detail.detail_urls.subUrls}}" wx:key="index">
-                    <image class="detail_img" src="{{item.url}}" mode="widthFix"/>
+            <block wx:if="{{activeTabIdx === 0 && detail.detail_urls && detail.detail_urls.detailUrls}}">
+                <block wx:for="{{detail.detail_urls.detailUrls}}" wx:key="index">
+                    <image bindtap="onPreviewImg" data-url="{{item}}" class="detail_img" src="{{item}}" mode="widthFix"/>
                 </block>
             </block>
             <block wx:if="{{activeTabIdx === 1 && detail.detail_urls && detail.detail_urls.teachUrls}}">
                 <block wx:for="{{detail.detail_urls.teachUrls}}" wx:key="index">
-                    <image class="detail_img" src="{{item.url}}" mode="widthFix"/>
+                    <image bindtap="onPreviewImg" data-url="{{item}}" class="detail_img" src="{{item}}" mode="widthFix"/>
                 </block>
             </block>
             <block wx:if="{{activeTabIdx === 2 && detail.detail_urls && detail.detail_urls.signupUrls}}">
                 <block wx:for="{{detail.detail_urls.signupUrls}}" wx:key="index">
-                    <image class="detail_img" src="{{item.url}}" mode="widthFix"/>
+                    <image bindtap="onPreviewImg" data-url="{{item}}" class="detail_img" src="{{item}}" mode="widthFix"/>
                 </block>
             </block>
         </view>
