@@ -175,3 +175,47 @@
     width: 100%;
     opacity: 0;
 }
+
+.team_item {
+    display: flex;
+    padding: 20rpx 0;
+    color: #333;
+}
+
+.team_item_label {
+    width: 160rpx;
+}
+
+.team_item_value {
+    padding-left: 20rpx;
+    flex: 1;
+}
+
+.team_item_desc {
+    padding-left: 20rpx;
+    flex: 1;
+}
+
+.team_desc_time {
+    color: #8a8a8a;
+}
+
+.team_desc_person {
+    display: flex;
+    margin: 20rpx 0;
+    margin-bottom: 40rpx;
+    color: #8a8a8a;
+}
+
+.team_desc_person_img {
+    height: 80rpx;
+    width: 80rpx;
+    border-radius: 100%;
+}
+
+.team_desc_person_name {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    margin-left: 20rpx;
+}

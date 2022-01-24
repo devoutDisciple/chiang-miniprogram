@@ -46,6 +46,38 @@
                     <image bindtap="onPreviewImg" data-url="{{item}}" class="detail_img" src="{{item}}" mode="widthFix"/>
                 </block>
             </block>
+            <block wx:if="{{activeTabIdx === 3 && teamProcess && teamProcess.legnth !== 0}}">
+                <view class="team_item">
+                    <view class="team_item_label">发起时间: </view>
+                    <view class="team_item_value">{{teamProcess.create_time}}</view>
+                </view>
+                <view class="team_item">
+                    <view class="team_item_label">参与人数: </view>
+                    <view class="team_item_value">{{teamProcess.num}}人 (3人)</view>
+                </view>
+                <view class="team_item">
+                    <view class="team_item_label">组团状态: </view>
+                    <view class="team_item_value">{{teamProcess.teamState}}</view>
+                </view>
+                <view class="team_item">
+                    <view class="team_item_label">截止时间: </view>
+                    <view class="team_item_value">{{teamProcess.end_time}}</view>
+                </view>
+                <view class="team_item">
+                    <view class="team_item_label">组团进度: </view>
+                    <view class="team_item_desc">
+                        <block wx:if="{{teamProcess.orderDtail && teamProcess.orderDtail.length !== 0}}">
+                            <block wx:for="{{teamProcess.orderDtail}}" wx:key="user_id">
+                                <view class="team_desc_time">{{item.create_time}}</view>
+                                <view class="team_desc_person">
+                                    <image class="team_desc_person_img" src="{{item.userDetail.photo}}" />
+                                    <view class="team_desc_person_name">{{item.userDetail.username || ""}} 参与拼团</view>
+                                </view>
+                            </block>
+                        </block>
+                    </view>
+                </view>
+            </block>
         </view>
         <view class="ellipse"></view>
     </scroll-view>
@@ -92,4 +124,5 @@
         
     </view>
     <phone-component visible="{{phoneDialogVisible}}" bindOnClose="onClosePhoneDialog"/>
+    <userinfo-component visible="{{userDialogVisible}}" bindOnClose="onCloseUserInfoDialog" />
 </view>

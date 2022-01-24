@@ -1,4 +1,5 @@
 // component/class/class.js
+
 Component({
 	/**
 	 * 组件的属性列表
@@ -15,6 +16,10 @@ Component({
 		type: {
 			type: Number,
 			value: 1,
+		},
+		teamState: {
+			type: String,
+			value: '',
 		},
 	},
 

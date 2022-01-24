@@ -17,7 +17,7 @@
             </block>
         </view>
         <block wx:if="{{pageName === 'order'}}">
-            <view class="data_person_desc">{{type === 1 ? "已报名" : "已组团"}}</view>
+            <view class="data_person_desc">{{type === 1 ? "已报名" : teamState}}</view>
         </block>
         <block wx:else>
             <view class="data_person_desc">限时优惠仅{{subject.price}}元</view>

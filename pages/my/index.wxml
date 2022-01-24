@@ -14,7 +14,7 @@
                     <image src="/asserts/public/photo.png" class="person_img"/>
                     <view class="person_name">点击登录</view>
                     <view class="person_detail"></view>
-                    <button class="user_btn" open-type="getUserInfo" bindtap="getUserProfile">
+                    <button class="user_btn" open-type="getUserInfo" bindgetuserinfo="getUserProfile">
                         按钮文本
                     </button>
                 </view>

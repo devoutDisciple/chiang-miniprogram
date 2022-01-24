@@ -11,7 +11,7 @@
         <block wx:if="{{orderList && orderList.length !== 0}}">
             <block wx:for="{{orderList}}" wx:key="id">
                 <view class="chunk">
-                    <subject-item pageName="order" type="{{item.type}}" subject="{{item.subjectDetail}}" data-detail="{{item.subjectDetail}}" bindOnTap="onTapSubjectItem"/>
+                    <subject-item pageName="order" type="{{item.type}}" subject="{{item.subjectDetail}}" teamState="{{item.teamState}}" data-detail="{{item.subjectDetail}}" bindOnTap="onTapSubjectItem"/>
                 </view>
             </block>
             <btm-tip />

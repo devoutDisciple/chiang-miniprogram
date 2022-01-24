@@ -14,7 +14,9 @@ Component({
 	/**
 	 * 组件的初始数据
 	 */
-	data: {},
+	data: {
+		logoUrl: 'https://www.chiangky.com/public/logo.png',
+	},
 
 	/**
 	 * 组件的方法列表

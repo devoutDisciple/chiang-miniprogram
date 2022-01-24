@@ -15,6 +15,7 @@ Page({
 		tid: '', // 组团的id
 		teamDetail: {}, // 组团详情
 		phoneDialogVisible: false, // phone的弹框
+		userDialogVisible: false, // 用户信息弹框
 		tab: [
 			{
 				id: 1,
@@ -33,16 +34,29 @@ Page({
 			},
 		],
 		activeTabIdx: 0,
+		teamProcess: {},
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		const { id, teamUuid } = options;
+		const { id, teamUuid, showTeamProcess } = options;
 		if (!id) {
 			return wx.switchTab({
 				url: '/pages/chiang/index',
+			});
+		}
+		if (showTeamProcess) {
+			this.setData({
+				tab: [
+					...this.data.tab,
+					{
+						id: 4,
+						key: 'teamProcess',
+						name: '组团进度',
+					},
+				],
 			});
 		}
 		if (teamUuid) {
@@ -62,14 +76,24 @@ Page({
 		}
 		// 判断是否已经获取用户手机号
 		const phone = wx.getStorageSync('phone');
+		const photo = wx.getStorageSync('photo');
+		const username = wx.getStorageSync('username');
 		if (!phone) {
 			this.setData({ phoneDialogVisible: true });
+		}
+		if (!photo || !username) {
+			this.setData({ userDialogVisible: true });
 		}
 	},
 
 	// 关闭获取手机号弹框
 	onClosePhoneDialog: function () {
 		this.setData({ phoneDialogVisible: false });
+	},
+
+	// 关闭获取用户信息弹框
+	onCloseUserInfoDialog: function () {
+		this.setData({ userDialogVisible: false });
 	},
 
 	// 获取课程详情
@@ -112,6 +136,20 @@ Page({
 		this.setData({ teamDetail: teamDetail, tid: teamDetail.uuid });
 	},
 
+	// 获取组团进度
+	getTeamProcess: async function () {
+		const { tid } = this.data;
+		if (!tid) return;
+		loading.showLoading();
+		const teamProcess = await request.get({
+			url: '/team/teamDetailAndProcessByUserid',
+			data: { team_uuid: tid },
+		});
+		console.log(teamProcess);
+		this.setData({ teamProcess: teamProcess });
+		loading.hideLoading();
+	},
+
 	// 刷新
 	onRefresh: async function () {
 		this.setData({ refresherTriggered: true });
@@ -130,8 +168,13 @@ Page({
 		}
 		// 判断是否已经获取用户手机号
 		const phone = wx.getStorageSync('phone');
+		const photo = wx.getStorageSync('photo');
+		const username = wx.getStorageSync('username');
 		if (!phone) {
 			return this.setData({ phoneDialogVisible: true });
+		}
+		if (!photo || !username) {
+			return this.setData({ userDialogVisible: true });
 		}
 		const { detail, tid } = this.data;
 		const data = {
@@ -180,13 +223,16 @@ Page({
 	onTapTab: function (e) {
 		const { idx } = e.detail;
 		this.setData({ activeTabIdx: idx });
+		if (idx === 3) {
+			this.getTeamProcess();
+		}
 	},
 
 	onShareAppMessage: function () {
 		const { detailId, tid } = this.data;
 		let path = `/pages/classDetail/classDetail?id=${detailId}`;
 		if (tid) {
-			path += `&teamUuid=${tid}`;
+			path += `&teamUuid=${tid}&showTeamProcess=true`;
 		}
 		return {
 			title: '驰昂考研',

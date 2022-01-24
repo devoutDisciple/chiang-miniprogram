@@ -31,12 +31,6 @@ Page({
 		loading.hideLoading();
 	},
 
-	// 点击item，前往详情页面
-	onTapSubjectItem: function (e) {
-		const { id } = e.currentTarget.dataset.detail;
-		wx.navigateTo({ url: `/pages/classDetail/classDetail?id=${id}` });
-	},
-
 	// 刷新
 	onRefresh: async function () {
 		this.setData({ refresherTriggered: true });

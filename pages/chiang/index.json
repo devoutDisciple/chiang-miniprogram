@@ -5,7 +5,8 @@
         "tab": "/component/tab/tab",
         "subject-item": "/component/subjectItem/subjectItem",
         "btm-tip": "/component/btmTip/btmTip",
-        "phone-component": "/component/getPhone/getPhone"
+        "phone-component": "/component/getPhone/getPhone",
+        "userinfo-component": "/component/getUserInfo/getUserInfo"
 	},
 	"enablePullDownRefresh": true
 }

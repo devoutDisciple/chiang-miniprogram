@@ -29,7 +29,7 @@
         <block wx:else>
             <view class="content_empty">暂无课程</view>
         </block>
-        
         <phone-component visible="{{phoneDialogVisible}}" bindOnClose="onClosePhoneDialog"/>
+        <userinfo-component visible="{{userDialogVisible}}" bindOnClose="onCloseUserInfoDialog" />
     </scroll-view>
 </view>

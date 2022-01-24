@@ -22,6 +22,7 @@ Page({
 		// 老师的基本信息
 		teachers: [],
 		phoneDialogVisible: false,
+		userDialogVisible: false, // 用户信息弹框
 		iptValue: '',
 	},
 
@@ -35,8 +36,13 @@ Page({
 		}
 		// 判断是否已经获取用户手机号
 		const phone = wx.getStorageSync('phone');
+		const photo = wx.getStorageSync('photo');
+		const username = wx.getStorageSync('username');
 		if (!phone) {
 			this.setData({ phoneDialogVisible: true });
+		}
+		if (!photo || !username) {
+			this.setData({ userDialogVisible: true });
 		}
 		this.init();
 		wx.showShareMenu({
@@ -57,6 +63,11 @@ Page({
 	// 关闭获取手机号弹框
 	onClosePhoneDialog: function () {
 		this.setData({ phoneDialogVisible: false });
+	},
+
+	// 关闭获取用户信息弹框
+	onCloseUserInfoDialog: function () {
+		this.setData({ userDialogVisible: false });
 	},
 
 	// 获取swiper
