@@ -54,7 +54,7 @@ Page({
 					{
 						id: 4,
 						key: 'teamProcess',
-						name: '组团进度',
+						name: '拼团进度',
 					},
 				],
 			});

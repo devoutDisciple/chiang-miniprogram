@@ -56,7 +56,7 @@
                     <view class="team_item_value">{{teamProcess.num}}人 (3人)</view>
                 </view>
                 <view class="team_item">
-                    <view class="team_item_label">组团状态: </view>
+                    <view class="team_item_label">拼团状态: </view>
                     <view class="team_item_value">{{teamProcess.teamState}}</view>
                 </view>
                 <view class="team_item">
@@ -64,7 +64,7 @@
                     <view class="team_item_value">{{teamProcess.end_time}}</view>
                 </view>
                 <view class="team_item">
-                    <view class="team_item_label">组团进度: </view>
+                    <view class="team_item_label">拼团进度: </view>
                     <view class="team_item_desc">
                         <block wx:if="{{teamProcess.orderDtail && teamProcess.orderDtail.length !== 0}}">
                             <block wx:for="{{teamProcess.orderDtail}}" wx:key="user_id">
@@ -107,7 +107,7 @@
         </block>
         <block wx:if="{{type === 1}}">
             <view class="cluster" data-btntype="2" bindtap="onClickApply">
-                <view class="cluster_btn">组团报名</view>
+                <view class="cluster_btn">三人拼团</view>
             </view>
         </block>
         <block wx:if="{{type === 2}}">
@@ -117,7 +117,7 @@
         </block>
         <block wx:if="{{type === 3}}">
             <view class="cluster" data-btntype="2">
-                <view class="cluster_btn">邀请组团</view>
+                <view class="cluster_btn">邀请拼团</view>
                 <button class="cluster_share_btn" open-type="share">转发</button>
             </view>
         </block>

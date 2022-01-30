@@ -29,7 +29,7 @@
         </view>
         <view class="setting">
             <listItem iconName="order" text="账单明细" isFirst data-key="bill" bindtap = "onTapItem"/>
-            <listItem iconName="team" text="组团记录" data-key="team" bindtap = "onTapItem"/>
+            <listItem iconName="team" text="拼团记录" data-key="team" bindtap = "onTapItem"/>
             <listItem iconName="class" text="报名课程" isLast data-key="class" bindtap = "onTapItem"/>
         </view>
         <view class="setting">
