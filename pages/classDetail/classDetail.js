@@ -11,7 +11,7 @@ Page({
 		detailId: '',
 		detail: {}, // 课程详情
 		refresherTriggered: false,
-		type: 1, // 1-未报名和未组团 2-已报名 3-已组团
+		type: 1, // 1-未报名和未组团 2-已报名 3-已组团 4-已经退款
 		tid: '', // 组团的id
 		teamDetail: {}, // 组团详情
 		phoneDialogVisible: false, // phone的弹框
@@ -125,6 +125,9 @@ Page({
 				this.getTeamDetail(orderDetail.team_uuid);
 			});
 		}
+		if (Number(orderDetail.pay_state) === 2) {
+			this.setData({ type: 4 });
+		}
 	},
 
 	// 根据teamUUid获取组团详情
@@ -145,7 +148,6 @@ Page({
 			url: '/team/teamDetailAndProcessByUserid',
 			data: { team_uuid: tid },
 		});
-		console.log(teamProcess);
 		this.setData({ teamProcess: teamProcess });
 		loading.hideLoading();
 	},

@@ -12,7 +12,7 @@
         <view class="intro">
             <image bindtap="onPreviewImg" data-url="{{detail.detail_urls.url}}" src="{{detail.detail_urls.url}}" class="intro_img" mode="widthFix"/>
             <view class="intro_title">{{detail.title}}</view>
-            <view class="intro_time">{{detail.start_time}} - {{detail.end_time}}</view>
+            <view class="intro_time">课程周期：{{detail.start_time}} - {{detail.end_time}}</view>
             <view class="intro_person">限{{detail.limit_num}}人 | 已报名{{detail.total_person}}人</view>
             <view class="intro_price"><text class="intro_price_sign">￥</text>{{detail.price}}</view>
         </view>
@@ -105,6 +105,11 @@
                 <view class="apply_btn">已拼团</view>
             </view>
         </block>
+        <block wx:if="{{type === 4}}">
+            <view class="apply">
+                <view class="apply_btn">已退款</view>
+            </view>
+        </block>
         <block wx:if="{{type === 1}}">
             <view class="cluster" data-btntype="2" bindtap="onClickApply">
                 <view class="cluster_btn">三人拼团</view>
@@ -121,7 +126,11 @@
                 <button class="cluster_share_btn" open-type="share">转发</button>
             </view>
         </block>
-        
+        <block wx:if="{{type === 4}}">
+            <view class="cluster" data-btntype="2">
+                <view class="cluster_btn">已退款</view>
+            </view>
+        </block>
     </view>
     <phone-component visible="{{phoneDialogVisible}}" bindOnClose="onClosePhoneDialog"/>
     <userinfo-component visible="{{userDialogVisible}}" bindOnClose="onCloseUserInfoDialog" />
