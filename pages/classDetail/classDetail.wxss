@@ -68,6 +68,7 @@
 .teacher_photo {
     height: 80rpx;
     width: 80rpx;
+    border-radius: 100%;
 }
 
 .teach_name {
