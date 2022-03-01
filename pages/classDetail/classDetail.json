@@ -2,7 +2,8 @@
 	"usingComponents": {
 		"tab": "/component/tab/tab",
         "phone-component": "/component/getPhone/getPhone",
-        "userinfo-component": "/component/getUserInfo/getUserInfo"
+        "userinfo-component": "/component/getUserInfo/getUserInfo",
+        "dialog": "/component/dialog/dialog"
 	},
 	"navigationBarTitleText": "课程详情"
 }

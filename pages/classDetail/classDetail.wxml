@@ -91,8 +91,8 @@
         </view>
         
         <block wx:if="{{type === 1}}">
-            <view class="apply" data-btntype="1" bindtap="onClickApply">
-                <view class="apply_btn">立即报名</view>
+            <view class="apply" data-btntype="1" bindtap="onTapBtn">
+                <view class="apply_btn">立即报名 ￥200</view>
             </view>
         </block>
         <block wx:if="{{type === 2}}">
@@ -111,8 +111,8 @@
             </view>
         </block>
         <block wx:if="{{type === 1}}">
-            <view class="cluster" data-btntype="2" bindtap="onClickApply">
-                <view class="cluster_btn">三人拼团</view>
+            <view class="cluster" data-btntype="2" bindtap="onTapBtn">
+                <view class="cluster_btn">三人拼团 ￥200</view>
             </view>
         </block>
         <block wx:if="{{type === 2}}">
@@ -134,4 +134,7 @@
     </view>
     <phone-component visible="{{phoneDialogVisible}}" bindOnClose="onClosePhoneDialog"/>
     <userinfo-component visible="{{userDialogVisible}}" bindOnClose="onCloseUserInfoDialog" />
+    <block wx:if="{{dialogVisible}}">
+        <dialog bindOnClose="onCloseDialog" bindOnSure="onSureDialog"/>
+    </block>
 </view>

@@ -1,0 +1,75 @@
+.dialog {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(138, 138, 138, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.con {
+    background: #fff;
+    padding-top: 20rpx;
+    border-radius: 20rpx;
+    width: 90vw;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    padding: 20rpx 0;
+}
+
+.chunk {
+    border-bottom: 1rpx solid #f7f7f7;
+    padding: 30rpx 0;
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+}
+
+.picker {
+    position: absolute;
+    width: 100%;
+    align-items: center;
+    height: 40rpx;
+    left: 0;
+    top: 0;
+}
+
+.picker_init {
+    color: #6a6a6a;
+}
+
+.picker_value {
+    color: #333;
+}
+
+.btm {
+    display: flex;
+    align-items: center;
+    border-top: 1rpx solid #f7f7f7;
+    margin-top: 30rpx;
+    height: 120rpx;
+}
+
+.btm_left {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1rpx solid #f7f7f7;
+    color: #8a8a8a;
+}
+
+.btm_right {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f99a2e;
+}

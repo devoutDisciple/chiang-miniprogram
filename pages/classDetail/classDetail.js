@@ -35,6 +35,8 @@ Page({
 		],
 		activeTabIdx: 0,
 		teamProcess: {},
+		dialogVisible: false,
+		btnType: 1, // 1-报名 2-组团
 	},
 
 	/**
@@ -159,68 +161,6 @@ Page({
 		this.setData({ refresherTriggered: false });
 	},
 
-	// 点击立即报名
-	onClickApply: async function (e) {
-		const self = this;
-		const { btntype } = e.currentTarget.dataset;
-		const openId = wx.getStorageSync('openId');
-		const userId = wx.getStorageSync('userId');
-		if (!userId) {
-			return login.getLogin();
-		}
-		// 判断是否已经获取用户手机号
-		const phone = wx.getStorageSync('phone');
-		const photo = wx.getStorageSync('photo');
-		const username = wx.getStorageSync('username');
-		if (!phone) {
-			return this.setData({ phoneDialogVisible: true });
-		}
-		if (!photo || !username) {
-			return this.setData({ userDialogVisible: true });
-		}
-		const { detail, tid } = this.data;
-		const data = {
-			openId,
-			type: btntype,
-			userId,
-			project_id: detail.project_id,
-			subject_id: detail.id,
-		};
-		if (tid) {
-			data.teamId = tid;
-		}
-		const result = await request.post({
-			url: '/pay/paySignup',
-			data: data,
-		});
-		const { appId, paySign, packageSign, nonceStr, timeStamp, team_uuid } = result;
-		if (!paySign || !packageSign)
-			return wx.showToast({
-				title: '系统错误',
-			});
-		const params = {
-			appId,
-			timeStamp,
-			nonceStr,
-			paySign,
-			signType: 'RSA',
-			package: packageSign,
-		};
-		wx.requestPayment({
-			...params,
-			success(res) {
-				if (res.errMsg === 'requestPayment:ok') {
-					self.setData({ type: Number(btntype) === 1 ? 2 : 3 });
-					if (Number(btntype) === 2) {
-						self.setData({ tid: team_uuid });
-						// self.getTeamDetail(team_uuid);
-					}
-				}
-			},
-			fail() {},
-		});
-	},
-
 	// 切换tan
 	onTapTab: function (e) {
 		const { idx } = e.detail;
@@ -249,5 +189,102 @@ Page({
 			urls: [url],
 			showmenu: true,
 		});
+	},
+
+	// 点击关闭弹框
+	onCloseDialog: function () {
+		this.setData({ dialogVisible: false });
+	},
+
+	// 点击报名或者拼团
+	onTapBtn: function (e) {
+		const { btntype } = e.currentTarget.dataset;
+		this.setData({ btntype, dialogVisible: true });
+	},
+
+	// 支付
+	onPay: async function (avg) {
+		console.log(avg, 111);
+		const { name, sex, time, en, ma } = avg;
+		const self = this;
+		const { btntype } = this.data;
+		const openId = wx.getStorageSync('openId');
+		const userId = wx.getStorageSync('userId');
+		if (!userId) {
+			return login.getLogin();
+		}
+		// 判断是否已经获取用户手机号
+		const phone = wx.getStorageSync('phone');
+		const photo = wx.getStorageSync('photo');
+		const username = wx.getStorageSync('username');
+		if (!phone) {
+			return this.setData({ phoneDialogVisible: true });
+		}
+		if (!photo || !username) {
+			return this.setData({ userDialogVisible: true });
+		}
+		const { detail, tid } = this.data;
+		const data = {
+			openId,
+			type: btntype,
+			userId,
+			project_id: detail.project_id,
+			subject_id: detail.id,
+			name,
+			sex,
+			time,
+			en,
+			ma,
+		};
+		if (tid) {
+			data.teamId = tid;
+		}
+		const result = await request.post({
+			url: '/pay/paySignup',
+			data: data,
+		});
+		const { appId, paySign, packageSign, nonceStr, timeStamp, team_uuid } = result;
+		if (!paySign || !packageSign)
+			return wx.showToast({
+				title: '系统错误',
+				icon: 'error',
+			});
+		const params = {
+			appId,
+			timeStamp,
+			nonceStr,
+			paySign,
+			signType: 'RSA',
+			package: packageSign,
+		};
+		wx.requestPayment({
+			...params,
+			success(res) {
+				if (res.errMsg === 'requestPayment:ok') {
+					self.setData({ type: Number(btntype) === 1 ? 2 : 3 });
+					if (Number(btntype) === 2) {
+						self.setData({ tid: team_uuid });
+						// self.getTeamDetail(team_uuid);
+					}
+				}
+			},
+			fail() {},
+		});
+	},
+
+	// 点击关闭弹框
+	onSureDialog: function (e) {
+		// eslint-disable-next-line prefer-const
+		let { name, sex, time, english, math } = e.detail;
+		let en = 1;
+		let ma = '';
+		if (sex === '男') sex = 1;
+		if (math === '数学一') ma = 1;
+		if (math === '数学二') ma = 2;
+		if (math === '数学三') ma = 3;
+		if (english === '英语一') en = 1;
+		if (english === '英语二') en = 2;
+		this.setData({ dialogVisible: false });
+		this.onPay({ name, sex, time, en, ma });
 	},
 });

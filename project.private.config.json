@@ -27,7 +27,7 @@
         {
           "name": "课程详情",
           "pathName": "pages/classDetail/classDetail",
-          "query": "id=1&showTeamProcess=true",
+          "query": "id=29&showTeamProcess=false",
           "scene": null
         },
         {

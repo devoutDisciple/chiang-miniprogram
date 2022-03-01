@@ -1,0 +1,76 @@
+<view class="dialog">
+    <view class="con">
+        <view class="title">完善个人信息</view>
+        <view class="chunk">
+            <input bindblur="onBlurIpt" placeholder="请输入姓名" />
+        </view>
+        <view class="chunk">
+            <select-item>
+                <picker class="picker" bindchange="onPickSex" range="{{sexList}}">
+                    <block wx:if="{{sexSelect}}">
+                        <view class="picker_value">
+                            {{sexSelect}}
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <view class="picker_init">
+                            请选择性别
+                        </view>
+                    </block>
+                </picker>
+            </select-item>
+        </view>
+        <view class="chunk">
+            <select-item>
+                <picker class="picker" bindchange="onPickEnglish" range="{{englishList}}">
+                    <block wx:if="{{englishSelect}}">
+                        <view class="picker_value">
+                            {{englishSelect}}
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <view class="picker_init">
+                            请选择英语科目
+                        </view>
+                    </block>
+                </picker>
+            </select-item>
+        </view>
+        <view class="chunk">
+            <select-item>
+                <picker class="picker" bindchange="onPickMath" range="{{mathematicsList}}">
+                    <block wx:if="{{mathematicsSelect}}">
+                        <view class="picker_value">
+                            {{mathematicsSelect}}
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <view class="picker_init">
+                            请选择数学科目
+                        </view>
+                    </block>
+                </picker>
+            </select-item>
+        </view>
+        <view class="chunk">
+            <select-item>
+                <picker class="picker"  mode="date" bindchange="onPickDate">
+                    <block wx:if="{{timeSelect}}">
+                        <view class="picker_value">
+                            {{timeSelect}}
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <view class="picker_init">
+                            请选择入学时间
+                        </view>
+                    </block>
+                </picker>
+            </select-item>
+        </view>
+        <view class="btm">
+            <view class="btm_left" bindtap="onClose">取消</view>
+            <view class="btm_right" bindtap="onSure">确认支付 ￥200</view>
+        </view>
+    </view>
+</view>
